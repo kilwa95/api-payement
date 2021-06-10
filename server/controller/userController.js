@@ -1,4 +1,3 @@
-const User = require('../models/sequelize/User');
 const { findAllUsers, saveUser } = require('../queries/usersQuery');
 
 exports.fetchUsers = async (req, res, next) => {
