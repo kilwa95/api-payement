@@ -2,7 +2,7 @@ const { findAllbooks, saveBook } = require('../queries/booksQuery');
 
 exports.fetchBooks = async (req, res, next) => {
 	try {
-		const books = await findAllbooks();
+		const books = await findAllbooks(req.query);
 		res.status(200).json({
 			action: req.baseUrl,
 			method: req.method,

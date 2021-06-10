@@ -1,0 +1,24 @@
+GET http://localhost:3000/users
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "firstName": "khaled",
+    "lastName": "Dupont",
+    "email": "khaled@jd.fr",
+    "password": "password"
+}
+###
+GET http://localhost:3000/books
+###
+POST http://localhost:3000/books
+Content-Type: application/json
+
+{
+    "title": "book D",
+    "content": "contentcontentcontent",
+    "authorId": 1
+}
+
+

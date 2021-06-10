@@ -19,9 +19,6 @@ Book.init(
 Book.belongsTo(User, { as: 'author' });
 User.hasMany(Book, { foreignKey: 'authorId', as: 'books' });
 
-Book.addHook('afterCreate', (book) => denormalizeUser({ id: book.authorId }));
-Book.addHook('afterUpdate', (book) => denormalizeUser({ id: book.authorId }));
-
 Book.sync({
 	alter: true
 });
