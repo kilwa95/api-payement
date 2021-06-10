@@ -1,6 +1,7 @@
 const { findAllUsers, saveUser } = require('../queries/usersQuery');
 
 exports.fetchUsers = async (req, res, next) => {
+	console.log(req);
 	try {
 		const users = await findAllUsers();
 		res.status(200).json({

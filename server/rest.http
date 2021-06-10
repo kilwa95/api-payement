@@ -4,10 +4,10 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "firstName": "khaled",
-    "lastName": "Dupont",
+    "companyName": "facebook",
     "email": "khaled@jd.fr",
-    "password": "password"
+    "password": "password",
+    "roles": ["user"]
 }
 
 
