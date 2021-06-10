@@ -1,7 +1,26 @@
-const { findAllUsers, saveUser } = require('../queries/usersQuery');
+const { findAllUsers, saveUser, findUserByEmail } = require('../queries/usersQuery');
+const security = require('../services/security');
+
+exports.auth = async (req, res, next) => {
+	const { email, password } = req.body;
+	try {
+		const user = await findUserByEmail(email);
+		if (user) {
+			const token = security.comparePassword(password, user);
+			console.log(token);
+			res.header('Authorization', 'Bearer ' + token);
+			res.status(200).json({
+				action: req.url,
+				method: req.method,
+				data: { data: { token: token } }
+			});
+		}
+	} catch (error) {
+		console.error(error) || res.sendStatus(500);
+	}
+};
 
 exports.fetchUsers = async (req, res, next) => {
-	console.log(req);
 	try {
 		const users = await findAllUsers();
 		res.status(200).json({
