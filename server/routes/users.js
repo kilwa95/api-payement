@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { fetchUsers, saveUsers, auth } = require('../controller/userController');
+const { fetchUsers, saveUsers, auth, checkJWT } = require('../controller/userController');
 
-router.get('/', fetchUsers);
+router.get('/', checkJWT, fetchUsers);
 router.post('/', saveUsers);
 router.post('/login', auth);
 
