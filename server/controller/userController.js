@@ -13,7 +13,7 @@ exports.auth = async (req, res, next) => {
 			res.status(200).json({
 				action: req.url,
 				method: req.method,
-				data: { data: { token: token } }
+				data: { data: { user: user, token: token } }
 			});
 		}
 	} catch (error) {
