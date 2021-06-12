@@ -15,3 +15,10 @@ exports.saveUser = async (body) => {
 		console.error(error);
 	}
 };
+exports.findUserByEmail = async (email) => {
+	try {
+		return await User.findOne({ email: email });
+	} catch (error) {
+		console.error(error);
+	}
+};

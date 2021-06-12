@@ -1,24 +1,25 @@
 GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdE5hbWUiOm51bGwsImxhc3ROYW1lIjpudWxsLCJjb21wYW55TmFtZSI6ImZhY2Vib29rIiwicGhvbmUiOm51bGwsInJvbGVzIjpbInVzZXIiXSwiZW1haWwiOiJraGFsZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAka3BSbVEwM0dYNnR0dTZNRTJUdmE5LmxZekNkWk03Qi9wMTF3UlBZbzRHVlByNE9waG1sVXkiLCJjcmVhdGVkQXQiOiIyMDIxLTA2LTEwVDIwOjU4OjI4LjQ1OVoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA2LTEwVDIwOjU4OjI4LjQ1OVoiLCJhZGRyZXNzSWQiOm51bGx9LCJpYXQiOjE2MjMzNjA2MDksImV4cCI6MTYyMzQ0NzAwOX0.WvqdMFdyL1EoAKdZqR9T61DSTsBNP6PRd1R-mnDPWwY
+
 ###
 POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "firstName": "khaled",
-    "lastName": "Dupont",
-    "email": "khaled@jd.fr",
-    "password": "password"
+    "companyName": "facebook",
+    "email": "khaled@gmail.com",
+    "password": "password",
+    "roles": ["user"]
 }
 ###
-GET http://localhost:3000/books
-###
-POST http://localhost:3000/books
+POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-    "title": "book D",
-    "content": "contentcontentcontent",
-    "authorId": 1
+    "email": "khaled@gmail.com",
+    "password": "password"
 }
+
+
 
 
