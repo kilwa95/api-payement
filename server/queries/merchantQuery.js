@@ -1,6 +1,5 @@
 const User = require('../models/sequelize/User');
 const Address = require('../models/sequelize/Address');
-const { Op } = require('sequelize');
 
 exports.saveMerchant = async (body) => {
 	try {

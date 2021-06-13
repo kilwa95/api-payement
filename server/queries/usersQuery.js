@@ -1,8 +1,23 @@
 const User = require('../models/sequelize/User');
+const Address = require('../models/sequelize/Address');
 
-exports.findAllUsers = async () => {
+exports.findAllUsers = async (query) => {
+	const { address, ...rest } = query;
 	try {
-		return await User.findAll({});
+		return await User.findAll({
+			attributes: [ 'id', 'firstName', 'lastName', 'phone', 'email', 'roles', 'valid' ],
+			where: {
+				roles: [ 'user' ]
+			},
+			include: [
+				{
+					model: Address,
+					as: 'address',
+					where: address,
+					attributes: [ 'id', 'street', 'city', 'postalCode' ]
+				}
+			]
+		});
 	} catch (error) {
 		console.error(error);
 	}
