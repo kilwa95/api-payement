@@ -3,7 +3,7 @@ import Article from '../src/UI/article/Article';
 
 class App extends Component {
 	render() {
-		return <Article title="montre" description="montre made in suisse" date="2015-2022" prix={200} />;
+		return <Article title="Paris" description="Voyage en france en 10 jours" date="10/09/2020" prix={200} />;
 	}
 }
 
