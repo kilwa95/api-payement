@@ -18,6 +18,12 @@ Content-Type: application/json
     }
 }
 ###
+GET http://localhost:3001/merchants
+Content-Type: application/json
+
+
+###
+
 POST http://localhost:3001/merchants
 Content-Type: application/json
 

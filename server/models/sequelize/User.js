@@ -29,7 +29,7 @@ User.init(
 	}
 );
 
-const encodePassword = async (user) => {
+const persistUserFields = async (user) => {
 	user.roles.map((role) => {
 		if (role === 'MERCHANT') {
 			return (user.valid = false);
@@ -39,8 +39,8 @@ const encodePassword = async (user) => {
 	});
 	user.password = await bcrypt.hash(user.password, await bcrypt.genSalt());
 };
-User.addHook('beforeCreate', encodePassword);
-User.addHook('beforeUpdate', encodePassword);
+User.addHook('beforeCreate', persistUserFields);
+User.addHook('beforeUpdate', persistUserFields);
 
 // One To Many
 User.belongsTo(Address, { as: 'address' });
