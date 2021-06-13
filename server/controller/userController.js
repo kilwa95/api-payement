@@ -56,7 +56,7 @@ exports.checkJWT = async (req, res, next) => {
 
 exports.fetchUsers = async (req, res, next) => {
 	try {
-		const users = await findAllUsers();
+		const users = await findAllUsers(req.query);
 		res.status(200).json({
 			action: req.baseUrl,
 			method: req.method,

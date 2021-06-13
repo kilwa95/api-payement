@@ -1,0 +1,47 @@
+.article {
+	width: 1004px;
+	height: 148px;
+	border-bottom: 0.1px black solid;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+	display: flex;
+}
+.article-image {
+	width: 260px;
+	max-width: 260px;
+	height: 148px;
+}
+.article-content {
+	width: 700px;
+	height: 148px;
+	display: flex;
+	flex-direction: column;
+	padding-left: 1rem;
+}
+.article-prix {
+	height: 148px;
+	width: 100px;
+	padding-top: 1rem;
+	font-size: 25px;
+	color: #3498db;
+}
+.article-total {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 48px;
+	font-size: 16px;
+	color: #6a6f73;
+}
+.article-titre {
+	color: #e74c3c;
+	font-size: 34px;
+}
+.article-decription {
+	color: #1c1d1f;
+	font-size: 19px;
+	font-weight: 700;
+}
+.article-user {
+	color: #1c1d1f;
+	font-size: 12px;
+}
