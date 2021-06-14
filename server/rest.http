@@ -8,7 +8,7 @@ Content-Type: application/json
     "firstName": "khaled",
     "lastName": "abd",
     "phone": "078689772",
-    "email": "marie@gmail.com",
+    "email": "khaled@gmail.com",
     "password": "user",
     "roles": ["user"],
        "address": {
@@ -28,9 +28,9 @@ POST http://localhost:3001/merchants
 Content-Type: application/json
 
 {
-    "companyName": "facebook",
+    "companyName": "green-sante",
     "phone": "078689772",
-    "email": "bastien@gree-sante.fr",
+    "email": "david@gree-sante.fr",
     "password": "merchant",
     "roles": ["MERCHANT"],
     "address": {
