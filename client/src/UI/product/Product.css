@@ -3,6 +3,8 @@
 	height: 537px;
 	display: flex;
 	flex-direction: column;
+	margin-right: 10px;
+	border: 1px solid transparent;
 }
 .product:hover {
 	border: 1px solid #eee;

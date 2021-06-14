@@ -1,5 +1,5 @@
 import './Product.css';
-import Button from './Button';
+import Button from '../button/Button';
 const Product = (props) => {
 	return (
 		<div className="product">
