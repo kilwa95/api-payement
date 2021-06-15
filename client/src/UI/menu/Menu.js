@@ -12,9 +12,6 @@ const Menu = (props) => {
 			</div>
 			<a>Espace client</a>
 			<a>Espace marchant</a>
-			<a>
-				<i class="bi bi-cart" />
-			</a>
 		</div>
 	);
 };
