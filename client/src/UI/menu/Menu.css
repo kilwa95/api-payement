@@ -2,7 +2,7 @@
 	height: 72px;
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-evenly;
 	font-size: 16px;
 	cursor: pointer;
 	font-weight: 700 !important;
