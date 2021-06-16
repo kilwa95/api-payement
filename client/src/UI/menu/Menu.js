@@ -6,13 +6,14 @@ import Search from '../menu/Serach';
 import UserAccount from '../menu/UserAccount';
 
 const Menu = (props) => {
+	let { badge, setModal } = props;
 	return (
 		<div className="menu">
 			<Logo />
 			<Search />
 			<UserAccount type="user" />
 			<UserAccount type="merchant" />
-			<CartShopping />
+			<CartShopping onClick={() => setModal(true)} badge={badge} />
 		</div>
 	);
 };

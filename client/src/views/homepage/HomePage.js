@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Menu from '../../UI/menu/Menu';
 import List from '../../UI/product/List';
+import Sidenav from '../../UI/sidenav/Sidenav';
 
 let data = [
 	{
@@ -44,20 +45,37 @@ let data = [
 		price: '40,8',
 		image:
 			'https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/11033926921508488_1.jpg'
+	},
+	{
+		id: 7,
+		titre: 'Cat Tee Black T-Shirt',
+		price: '40,8',
+		image:
+			'https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/11033926921508488_1.jpg'
 	}
 ];
 
 const HomePage = (props) => {
 	const [ products, setProducts ] = useState([]);
+	const [ badge, setBadge ] = useState(0);
+	const [ modal, setModal ] = useState(false);
 
 	useEffect(() => {
 		setProducts(data);
 	}, []);
 
+	useEffect(
+		() => {
+			setBadge(products.length);
+		},
+		[ products ]
+	);
+
 	return (
 		<React.Fragment>
-			<Menu />
-			<List products={products} />
+			<Menu setModal={setModal} badge={badge} />
+			<List items={products} />
+			<Sidenav onClose={() => setModal(false)} open={modal} />
 		</React.Fragment>
 	);
 };

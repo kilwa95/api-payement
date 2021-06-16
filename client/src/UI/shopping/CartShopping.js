@@ -14,9 +14,11 @@ const StyledBadge = withStyles((theme) => ({
 }))(Badge);
 
 const CartShopping = (props) => {
+	let { badge, onClick } = props;
+
 	return (
-		<IconButton aria-label="cart">
-			<StyledBadge badgeContent={4} color="secondary">
+		<IconButton onClick={onClick} aria-label="cart">
+			<StyledBadge badgeContent={badge} color="secondary">
 				<ShoppingCartIcon />
 			</StyledBadge>
 		</IconButton>
