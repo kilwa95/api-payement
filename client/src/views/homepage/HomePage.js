@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Menu from '../../UI/menu/Menu';
 import List from '../../UI/product/List';
 import Sidenav from '../../UI/sidenav/Sidenav';
+import Panier from '../../UI/shopping/panier/Panier';
 
 let data = [
 	{
@@ -75,7 +76,9 @@ const HomePage = (props) => {
 		<React.Fragment>
 			<Menu setModal={setModal} badge={badge} />
 			<List items={products} />
-			<Sidenav onClose={() => setModal(false)} open={modal} />
+			<Sidenav onClose={() => setModal(false)} open={modal}>
+				<Panier items={products} />
+			</Sidenav>
 		</React.Fragment>
 	);
 };
