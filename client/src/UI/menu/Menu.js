@@ -1,20 +1,19 @@
 import React from 'react';
 import '../menu/Menu.css';
+import CartShopping from '../shopping/CartShopping';
+import Logo from '../menu/Logo';
+import Search from '../menu/Serach';
+import UserAccount from '../menu/UserAccount';
 
 const Menu = (props) => {
+	let { badge, setModal } = props;
 	return (
 		<div className="menu">
-			<div>
-				<img src="https://secure.meetupstatic.com/photos/event/5/3/2/600_484801330.jpeg" width="90" />
-			</div>
-			<div>
-				<input className="menu-input" placeholder="Rechercher" />
-			</div>
-			<a>Espace client</a>
-			<a>Espace marchant</a>
-			<a>
-				<i class="bi bi-cart" />
-			</a>
+			<Logo />
+			<Search />
+			<UserAccount type="user" />
+			<UserAccount type="merchant" />
+			<CartShopping onClick={() => setModal(true)} badge={badge} />
 		</div>
 	);
 };

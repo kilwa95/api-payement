@@ -1,0 +1,20 @@
+.panier-total {
+	color: white;
+	display: flex;
+	flex-direction: column;
+}
+.panier-total-subtotal {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 15px;
+}
+
+.subtotal {
+	color: #5b5a5e;
+	font-size: 25px;
+}
+.panier-total-price {
+	color: #eabf00;
+	font-size: 25px;
+}

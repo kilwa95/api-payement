@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
-import Article from '../src/UI/article/Article';
+import HomePage from './views/homepage/HomePage';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
 	render() {
-		return <Article title="Paris" description="Voyage en france en 10 jours" date="10/09/2020" prix={200} />;
+		return (
+			<HashRouter>
+				<React.Suspense>
+					<Switch>
+						<Route exact path="/" name="HomePage" render={(props) => <HomePage {...props} />} />
+					</Switch>
+				</React.Suspense>
+			</HashRouter>
+		);
 	}
 }
 
