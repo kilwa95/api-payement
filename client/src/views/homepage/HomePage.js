@@ -3,6 +3,7 @@ import Menu from '../../UI/menu/Menu';
 import List from '../../UI/product/List';
 import Sidenav from '../../UI/sidenav/Sidenav';
 import Panier from '../../UI/shopping/panier/Panier';
+import PanierTotal from '../../UI/shopping/panierTotal/PanierTotal';
 
 let data = [
 	{
@@ -78,6 +79,7 @@ const HomePage = (props) => {
 			<List items={products} />
 			<Sidenav onClose={() => setModal(false)} open={modal}>
 				<Panier items={products} />
+				<PanierTotal />
 			</Sidenav>
 		</React.Fragment>
 	);

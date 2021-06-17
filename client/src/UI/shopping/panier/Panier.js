@@ -6,6 +6,12 @@ const Panier = ({ items }) => {
 	return (
 		<div className="panier">
 			<CartProduct />
+			<CartProduct />
+			<CartProduct />
+			<CartProduct />
+			<CartProduct />
+			<CartProduct />
+			<CartProduct />
 		</div>
 	);
 };
