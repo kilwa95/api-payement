@@ -35,6 +35,16 @@ services:
     working_dir: /home/node/app
     command: sh -c "npm install; npm start"
 
+  admin:
+    image: node:alpine3.10
+    ports:
+      - 3002:3000
+    environment: {}
+    volumes:
+      - ./admin:/home/node/app
+    working_dir: /home/node/app
+    command: sh -c "npm install; npm start"
+
   db:
     image: postgres:alpine
     environment:
