@@ -1,10 +1,11 @@
 import React from 'react';
 import Sidebar from '../sidebar/Sidebar';
 import Wrapper from '../wrapper/Wrapper';
+import './Layout.css';
 
 const Layout = (props) => {
 	return (
-		<div className="app">
+		<div className="layout">
 			<Sidebar />
 			<Wrapper />
 		</div>
