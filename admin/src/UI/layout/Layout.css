@@ -1,1 +1,12 @@
+.layout {
+	display: flex;
+	flex-direction: row;
+	min-height: 100vh;
+}
 
+.layout-sidebar {
+	width: 256px;
+}
+.layout-sidebar2 {
+	width: 1424px;
+}
