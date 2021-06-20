@@ -1,8 +1,8 @@
 .nav {
-	height: 35px;
 	cursor: pointer;
 	color: rgba(255, 255, 255, .8);
-	padding: 0px 0px 20px 30px;
+	height: 56px;
+	padding-left: 13px !important;
 }
 .nav:hover {
 	background: #eabf00;

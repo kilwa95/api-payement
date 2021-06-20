@@ -12,7 +12,7 @@ const Layout = (props) => {
 		<div className="layout">
 			<Sidebar>
 				<HeaderSidebar />
-				<ListNav>{navs.map((nav, index) => <Nav key={index} name={nav.name} />)}</ListNav>
+				<ListNav>{navs.map((nav, index) => <Nav key={index} name={nav.name} to={nav.to} />)}</ListNav>
 			</Sidebar>
 			<Wrapper />
 		</div>

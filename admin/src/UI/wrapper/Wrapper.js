@@ -9,6 +9,7 @@ const Wrapper = (props) => {
 	return (
 		<div className="wrapper">
 			<Header />
+			<Body />
 		</div>
 	);
 };
