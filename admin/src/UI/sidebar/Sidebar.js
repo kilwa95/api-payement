@@ -1,8 +1,8 @@
 import React from 'react';
 import './Sidebar.css';
 
-const Sidebar = (props) => {
-	return <div class="sidebar" />;
+const Sidebar = ({ children }) => {
+	return <div className="sidebar">{children}</div>;
 };
 
 export default Sidebar;

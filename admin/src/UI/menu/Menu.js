@@ -18,7 +18,7 @@ const Menu = (props) => {
 				<div style={styles}>Trasaction</div>
 				<div style={styles}>Commandes</div>
 			</div>
-			<div className="menu-B">col2</div>
+			<div className="menu-B" />
 		</div>
 	);
 };

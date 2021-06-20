@@ -1,0 +1,6 @@
+.listNav {
+	display: flex;
+	flex-direction: column;
+	color: #fff;
+	padding-top: 1rem;
+}
