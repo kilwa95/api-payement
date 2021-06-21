@@ -1,9 +1,9 @@
 import MerchantPage from '../views/MerchantPage';
 
 const routes = [
-	{ path: '/', exact: true, name: 'Home' },
+	{ path: '/admin', exact: true, name: 'admin' },
 	{
-		path: '/merchants',
+		path: '/admin/merchants',
 		name: 'merchants',
 		component: MerchantPage
 	}

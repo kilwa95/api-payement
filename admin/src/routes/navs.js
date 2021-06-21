@@ -1,19 +1,19 @@
 const navs = [
 	{
 		name: 'Dashboard',
-		to: '/dashboard'
+		to: '/admin/dashboard'
 	},
 	{
 		name: 'merchants',
-		to: '/merchants'
+		to: '/admin/merchants'
 	},
 	{
 		name: 'transactions',
-		to: '/transactions'
+		to: '/admin/transactions'
 	},
 	{
 		name: 'commandes',
-		to: '/commandes'
+		to: '/admin/commandes'
 	}
 ];
 
