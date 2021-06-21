@@ -9,6 +9,16 @@ exports.saveMerchant = async (body) => {
 		console.error(error);
 	}
 };
+exports.updateMerchant = async (body, params) => {
+	try {
+		const data = await User.update(body, {
+			where: { id: params.id }
+		});
+		return data;
+	} catch (error) {
+		console.error(error);
+	}
+};
 
 exports.findAllMerchants = async (query) => {
 	const { address, ...rest } = query;

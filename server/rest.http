@@ -10,6 +10,7 @@ Content-Type: application/json
     "phone": "078689772",
     "email": "khaled@gmail.com",
     "password": "user",
+    "valid": true,
     "roles": ["user"],
        "address": {
         "street": "78 quai de grenelle",
@@ -28,16 +29,24 @@ POST http://localhost:3001/merchants
 Content-Type: application/json
 
 {
-    "companyName": "green-sante",
+    "companyName": "facebook",
     "phone": "078689772",
-    "email": "david@gree-sante.fr",
+    "email": "david@facebook.fr",
     "password": "merchant",
     "roles": ["MERCHANT"],
+    "valid": false,
     "address": {
         "street": "78 quai de grenelle",
         "city": "paris",
         "postalCode": 75015
     }
+}
+###
+PUT http://localhost:3001/merchants/3
+Content-Type: application/json
+
+{
+    "valid": true
 }
 ###
 POST http://localhost:3001/users/login
