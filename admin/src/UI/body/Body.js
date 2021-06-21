@@ -7,7 +7,7 @@ import './Body.css';
 
 const Body = (props) => {
 	return (
-		<div class="body">
+		<div className="body">
 			<CContainer>
 				<Suspense>
 					<Switch>

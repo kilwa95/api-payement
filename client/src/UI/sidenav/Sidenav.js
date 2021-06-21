@@ -6,8 +6,8 @@ const Sidenav = (props) => {
 
 	if (open) {
 		return (
-			<div class="sidenav">
-				<a onClick={onClose} class="closebtn">
+			<div className="sidenav">
+				<a onClick={onClose} className="closebtn">
 					&times;
 				</a>
 				{children}
