@@ -41,3 +41,25 @@ exports.findAllMerchants = async (query) => {
 		console.error(error);
 	}
 };
+exports.findMerchantById = async (query, params) => {
+	const { address, ...rest } = query;
+	try {
+		return await User.findOne({
+			attributes: [ 'id', 'companyName', 'phone', 'email', 'roles', 'valid' ],
+			where: {
+				roles: [ 'MERCHANT' ],
+				id: params.id
+			},
+			include: [
+				{
+					model: Address,
+					as: 'address',
+					where: address,
+					attributes: [ 'id', 'street', 'city', 'postalCode' ]
+				}
+			]
+		});
+	} catch (error) {
+		console.error(error);
+	}
+};

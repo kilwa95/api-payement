@@ -47,7 +47,7 @@ const MerchantPage = (props) => {
 					columnFilter
 					scopedSlots={{
 						activate_company: (item) => {
-							return <Switch />;
+							return <Switch setMerchants={setMerchants} merchants={merchants} item={item} />;
 						},
 						city: (item) => {
 							return <td className="py-2">{item.address.city}</td>;

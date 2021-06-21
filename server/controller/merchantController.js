@@ -1,5 +1,5 @@
 const { saveAddress } = require('../queries/addressQuery');
-const { saveMerchant, findAllMerchants, updateMerchant } = require('../queries/merchantQuery');
+const { saveMerchant, findAllMerchants, updateMerchant, findMerchantById } = require('../queries/merchantQuery');
 
 exports.SaveMerchant = async (req, res, next) => {
 	const { address, ...rest } = req.body;
@@ -30,7 +30,8 @@ exports.fetchMerchants = async (req, res, next) => {
 };
 exports.UpdateMerchant = async (req, res, next) => {
 	try {
-		const merchant = await updateMerchant(req.body, req.params);
+		await updateMerchant(req.body, req.params);
+		const merchant = await findMerchantById(req.query, req.params);
 		res.status(200).json({
 			action: req.url,
 			method: req.method,
