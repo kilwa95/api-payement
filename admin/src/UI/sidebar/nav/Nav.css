@@ -1,0 +1,9 @@
+.nav {
+	cursor: pointer;
+	color: rgba(255, 255, 255, .8);
+	height: 56px;
+	padding-left: 13px !important;
+}
+.nav:hover {
+	background: #eabf00;
+}
