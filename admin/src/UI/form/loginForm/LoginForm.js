@@ -3,7 +3,7 @@ import './LoginForm.css';
 
 import { CForm, CInput, CInputGroup, CButton } from '@coreui/react';
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit, error }) => {
 	const [ values, setValues ] = useState({
 		email: '',
 		password: ''
@@ -51,6 +51,7 @@ const LoginForm = ({ onSubmit }) => {
 						Login
 					</CButton>
 				</CForm>
+				<p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>
 			</div>
 
 			<div className="login-form-img">

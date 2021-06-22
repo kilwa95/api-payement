@@ -5,13 +5,13 @@ POST http://localhost:3001/users
 Content-Type: application/json
 
 {
-    "firstName": "admin",
+    "firstName": "sami",
     "lastName": "abd",
     "phone": "078689772",
-    "email": "admin@gmail.com",
-    "password": "admin",
+    "email": "sami@gmail.com",
+    "password": "user",
     "valid": true,
-    "roles": ["admin"],
+    "roles": ["user"],
        "address": {
         "street": "78 quai de grenelle",
         "city": "paris",
@@ -29,9 +29,9 @@ POST http://localhost:3001/merchants
 Content-Type: application/json
 
 {
-    "companyName": "facebook",
+    "companyName": "amazone",
     "phone": "078689772",
-    "email": "david@facebook.fr",
+    "email": "david@amazone.fr",
     "password": "merchant",
     "roles": ["MERCHANT"],
     "valid": false,

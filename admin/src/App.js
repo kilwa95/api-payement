@@ -10,8 +10,6 @@ const App = () => {
 	const { token, setToken } = useToken();
 	const { user, setUser } = useUser();
 
-	console.log(user);
-
 	if (!token) {
 		return <LoginPage setUser={setUser} setToken={setToken} />;
 	}
@@ -21,7 +19,6 @@ const App = () => {
 			<React.Suspense>
 				<BrowserRouter>
 					<Switch>
-						{/* <Route path="/login" name="login" render={(props) => <LoginPage {...props} />} /> */}
 						<Route path="/" name="Home" render={(props) => <Layout {...props} />} />
 					</Switch>
 				</BrowserRouter>
