@@ -5,13 +5,13 @@ POST http://localhost:3001/users
 Content-Type: application/json
 
 {
-    "firstName": "khaled",
+    "firstName": "admin",
     "lastName": "abd",
     "phone": "078689772",
-    "email": "khaled@gmail.com",
-    "password": "user",
+    "email": "admin@gmail.com",
+    "password": "admin",
     "valid": true,
-    "roles": ["user"],
+    "roles": ["admin"],
        "address": {
         "street": "78 quai de grenelle",
         "city": "paris",
