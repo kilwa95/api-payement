@@ -31,9 +31,9 @@ POST http://localhost:3001/merchants
 Content-Type: application/json
 
 {
-    "companyName": "google",
+    "companyName": "amzone",
     "phone": "078689772",
-    "email": "david@google.fr",
+    "email": "david@amzone.fr",
     "password": "merchant",
     "roles": ["MERCHANT"],
     "valid": false,
