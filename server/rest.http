@@ -1,6 +1,8 @@
 GET http://localhost:3001/users
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdE5hbWUiOm51bGwsImxhc3ROYW1lIjpudWxsLCJjb21wYW55TmFtZSI6ImZhY2Vib29rIiwicGhvbmUiOm51bGwsInJvbGVzIjpbInVzZXIiXSwiZW1haWwiOiJraGFsZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkQzF6bGpYWG1mVS9DdVFtL2p2UDY4LnhJZXlqTUJFcnc0eGlpM09keXIzMGFjRWo1U0thazYiLCJjcmVhdGVkQXQiOiIyMDIxLTA2LTEyVDE2OjI5OjE0LjMxNVoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA2LTEyVDE2OjI5OjE0LjMxNVoiLCJhZGRyZXNzSWQiOm51bGx9LCJpYXQiOjE2MjM1MTgxNzEsImV4cCI6MTYyMzYwNDU3MX0.VD4OU-PFD0KClxcksFJNLGjQVL4H3o7RkVssCYvwtpc
 ###
+
+
 POST http://localhost:3001/users
 Content-Type: application/json
 
@@ -18,6 +20,14 @@ Content-Type: application/json
         "postalCode": 75015
     }
 }
+###
+POST http://localhost:3001/users/login
+Content-Type: application/json
+
+{
+    "email": "khaled@gmail.com",
+    "password": "user"
+}
 
 
 ###
@@ -27,6 +37,13 @@ Content-Type: application/json
 
 ###
 
+PUT http://localhost:3001/admin/merchants/valid/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdE5hbWUiOiJhZG1pbiIsImxhc3ROYW1lIjoiYWJkIiwiY29tcGFueU5hbWUiOm51bGwsInBob25lIjo3ODY4OTc3Miwicm9sZXMiOlsiYWRtaW4iXSwidmFsaWQiOnRydWUsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkaXVodHFaNnowcGprMjlUYmVwYXZJTzQyTVRzU3IwWGVoY2Z1YXY5YjcyMER0R2J6NVQvay4iLCJjcmVhdGVkQXQiOiIyMDIxLTA2LTIyVDE3OjUzOjEwLjAwNFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA2LTIyVDE3OjUzOjEwLjAwNFoiLCJhZGRyZXNzSWQiOm51bGx9LCJpYXQiOjE2MjQ0NDAzOTMsImV4cCI6MTYyNDUyNjc5M30.CIjpUuWg26eRvDeYoA_Bj7PMGhns5ipf2s-YJ5UjrBM
+
+{
+    "valid": true
+}
+###
 POST http://localhost:3001/merchants
 Content-Type: application/json
 
@@ -43,21 +60,21 @@ Content-Type: application/json
         "postalCode": 75015
     }
 }
+
 ###
-PUT http://localhost:3001/admin/merchants/valid/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdE5hbWUiOiJhZG1pbiIsImxhc3ROYW1lIjoiYWJkIiwiY29tcGFueU5hbWUiOm51bGwsInBob25lIjo3ODY4OTc3Miwicm9sZXMiOlsiYWRtaW4iXSwidmFsaWQiOnRydWUsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkaXVodHFaNnowcGprMjlUYmVwYXZJTzQyTVRzU3IwWGVoY2Z1YXY5YjcyMER0R2J6NVQvay4iLCJjcmVhdGVkQXQiOiIyMDIxLTA2LTIyVDE3OjUzOjEwLjAwNFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA2LTIyVDE3OjUzOjEwLjAwNFoiLCJhZGRyZXNzSWQiOm51bGx9LCJpYXQiOjE2MjQ0NDAzOTMsImV4cCI6MTYyNDUyNjc5M30.CIjpUuWg26eRvDeYoA_Bj7PMGhns5ipf2s-YJ5UjrBM
+GET http://localhost:3001/products
+###
+POST http://localhost:3001/products
+Content-Type: application/json    
 
 {
-    "valid": true
+    "titre": "Cat Tee Black T-Shirt",
+    "price": 10,
+    "image": "https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg"
+   
 }
-###
-POST http://localhost:3001/users/login
-Content-Type: application/json
 
-{
-    "email": "khaled@gmail.com",
-    "password": "user"
-}
+
 
 
 
