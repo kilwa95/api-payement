@@ -5,9 +5,11 @@ import Sidenav from '../../UI/sidenav/Sidenav';
 import Panier from '../../UI/shopping/panier/Panier';
 import PanierTotal from '../../UI/shopping/panierTotal/PanierTotal';
 import productsHttp from '../../services/productHttp';
+import panierHttp from '../../services/panierHttp';
 
 const HomePage = (props) => {
 	const [ products, setProducts ] = useState([]);
+	const [ panier, setPanier ] = useState([]);
 	const [ badge, setBadge ] = useState(0);
 	const [ modal, setModal ] = useState(false);
 
@@ -19,11 +21,19 @@ const HomePage = (props) => {
 		fetchData();
 	}, []);
 
+	useEffect(() => {
+		async function fetchData() {
+			const products = await panierHttp.fetchProductsPanier();
+			setPanier(products.data.data.panier);
+		}
+		fetchData();
+	}, []);
+
 	useEffect(
 		() => {
-			setBadge(products.length);
+			setBadge(panier.length);
 		},
-		[ products ]
+		[ panier ]
 	);
 
 	return (
@@ -31,7 +41,7 @@ const HomePage = (props) => {
 			<Menu setModal={setModal} badge={badge} />
 			<List items={products} />
 			<Sidenav onClose={() => setModal(false)} open={modal}>
-				<Panier items={products} />
+				<Panier items={panier} />
 				<PanierTotal />
 			</Sidenav>
 		</React.Fragment>
