@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HashRouter, Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Layout from '../src/UI/layout/Layout';
