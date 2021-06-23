@@ -28,7 +28,7 @@ const Body = (props) => {
 								)
 							);
 						})}
-						<Redirect from="/" to="/merchants" />
+						<Redirect from="/admin" to="/admin/merchants" />
 					</Switch>
 				</Suspense>
 			</CContainer>

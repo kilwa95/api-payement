@@ -5,10 +5,10 @@ POST http://localhost:3001/users
 Content-Type: application/json
 
 {
-    "firstName": "khaled",
+    "firstName": "sami",
     "lastName": "abd",
     "phone": "078689772",
-    "email": "khaled@gmail.com",
+    "email": "sami@gmail.com",
     "password": "user",
     "valid": true,
     "roles": ["user"],
@@ -18,8 +18,10 @@ Content-Type: application/json
         "postalCode": 75015
     }
 }
+
+
 ###
-GET http://localhost:3001/merchants
+GET http://localhost:3001/admin/merchants
 Content-Type: application/json
 
 
@@ -29,9 +31,9 @@ POST http://localhost:3001/merchants
 Content-Type: application/json
 
 {
-    "companyName": "facebook",
+    "companyName": "amzone",
     "phone": "078689772",
-    "email": "david@facebook.fr",
+    "email": "david@amzone.fr",
     "password": "merchant",
     "roles": ["MERCHANT"],
     "valid": false,
@@ -42,8 +44,8 @@ Content-Type: application/json
     }
 }
 ###
-PUT http://localhost:3001/merchants/3
-Content-Type: application/json
+PUT http://localhost:3001/admin/merchants/valid/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdE5hbWUiOiJhZG1pbiIsImxhc3ROYW1lIjoiYWJkIiwiY29tcGFueU5hbWUiOm51bGwsInBob25lIjo3ODY4OTc3Miwicm9sZXMiOlsiYWRtaW4iXSwidmFsaWQiOnRydWUsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkaXVodHFaNnowcGprMjlUYmVwYXZJTzQyTVRzU3IwWGVoY2Z1YXY5YjcyMER0R2J6NVQvay4iLCJjcmVhdGVkQXQiOiIyMDIxLTA2LTIyVDE3OjUzOjEwLjAwNFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA2LTIyVDE3OjUzOjEwLjAwNFoiLCJhZGRyZXNzSWQiOm51bGx9LCJpYXQiOjE2MjQ0NDAzOTMsImV4cCI6MTYyNDUyNjc5M30.CIjpUuWg26eRvDeYoA_Bj7PMGhns5ipf2s-YJ5UjrBM
 
 {
     "valid": true

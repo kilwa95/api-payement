@@ -15,9 +15,9 @@ module.exports = {
 			let info = transporter.sendMail({
 				from: 'lga.sig.khaled@gmail.com', // sender address
 				to: 'khaled.abdulhalim.pro@gmail.com', // list of receivers
-				subject: 'confirmation inscription au platforme', // Subject line
-				text: 'vous avez inscrit dans notre site ', // plain text body
-				html: `<h3><pre>kkk</pre></h3>` // html body
+				subject: email.subject, // Subject line
+				text: email.text, // plain text body
+				html: `<h3><pre>${email.text}</pre></h3>` // html body
 			});
 
 			return info;

@@ -32,7 +32,8 @@ exports.saveUser = async (body) => {
 };
 exports.findUserByEmail = async (email) => {
 	try {
-		return await User.findOne({ email: email });
+		const user = await User.findOne({ where: { email: email } });
+		return user;
 	} catch (error) {
 		console.error(error);
 	}
