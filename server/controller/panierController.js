@@ -1,4 +1,4 @@
-const { findAllProductsPanierById, saveProductPanier } = require('../queries/panierQuery');
+const { findAllProductsPanierById, saveProductPanier, findProductPanierById } = require('../queries/panierQuery');
 
 exports.fetchProductsPanierByUserId = async (req, res, next) => {
 	console.log(req.params);
@@ -15,7 +15,8 @@ exports.fetchProductsPanierByUserId = async (req, res, next) => {
 };
 exports.SaveProductsPanier = async (req, res, next) => {
 	try {
-		const panier = await saveProductPanier(req.body);
+		const product = await saveProductPanier(req.body);
+		const panier = await findProductPanierById(req.query, product.id);
 		res.status(200).json({
 			action: req.baseUrl,
 			method: req.method,
