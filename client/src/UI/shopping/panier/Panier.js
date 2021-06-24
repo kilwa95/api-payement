@@ -5,13 +5,9 @@ import './Panier.css';
 const Panier = ({ items }) => {
 	return (
 		<div className="panier">
-			<CartProduct />
-			<CartProduct />
-			<CartProduct />
-			<CartProduct />
-			<CartProduct />
-			<CartProduct />
-			<CartProduct />
+			{items.map((item) => (
+				<CartProduct titre={item.product.titre} price={item.product.price} image={item.product.image} />
+			))}
 		</div>
 	);
 };

@@ -4,82 +4,45 @@ import List from '../../UI/product/List';
 import Sidenav from '../../UI/sidenav/Sidenav';
 import Panier from '../../UI/shopping/panier/Panier';
 import PanierTotal from '../../UI/shopping/panierTotal/PanierTotal';
-
-let data = [
-	{
-		id: 1,
-		titre: 'Cat Tee Black T-Shirt',
-		price: '10,90',
-		image:
-			'https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg'
-	},
-	{
-		id: 2,
-		titre: 'Cat Tee Black T-Shirt',
-		price: '16,90',
-		image:
-			'https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/51498472915966370_1.jpg'
-	},
-	{
-		id: 3,
-		titre: 'Cat Tee Black T-Shirt',
-		price: '20.2',
-		image:
-			'https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/10686354557628304_1.jpg'
-	},
-	{
-		id: 4,
-		titre: 'Cat Tee Black T-Shirt',
-		price: '40,8',
-		image:
-			'https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/11033926921508488_1.jpg'
-	},
-	{
-		id: 5,
-		titre: 'Cat Tee Black T-Shirt',
-		price: '40,8',
-		image:
-			'https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/10686354557628304_1.jpg'
-	},
-	{
-		id: 6,
-		titre: 'Cat Tee Black T-Shirt',
-		price: '40,8',
-		image:
-			'https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/11033926921508488_1.jpg'
-	},
-	{
-		id: 7,
-		titre: 'Cat Tee Black T-Shirt',
-		price: '40,8',
-		image:
-			'https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/11033926921508488_1.jpg'
-	}
-];
+import productsHttp from '../../services/productHttp';
+import panierHttp from '../../services/panierHttp';
 
 const HomePage = (props) => {
 	const [ products, setProducts ] = useState([]);
+	const [ panier, setPanier ] = useState([]);
 	const [ badge, setBadge ] = useState(0);
 	const [ modal, setModal ] = useState(false);
 
 	useEffect(() => {
-		setProducts(data);
+		async function fetchData() {
+			const products = await productsHttp.fetchProducts();
+			setProducts(products.data.data.products);
+		}
+		fetchData();
+	}, []);
+
+	useEffect(() => {
+		async function fetchData() {
+			const products = await panierHttp.fetchProductsPanier();
+			setPanier(products.data.data.panier);
+		}
+		fetchData();
 	}, []);
 
 	useEffect(
 		() => {
-			setBadge(products.length);
+			setBadge(panier.length);
 		},
-		[ products ]
+		[ panier ]
 	);
 
 	return (
 		<React.Fragment>
 			<Menu setModal={setModal} badge={badge} />
-			<List items={products} />
+			<List panier={panier} setPanier={setPanier} items={products} />
 			<Sidenav onClose={() => setModal(false)} open={modal}>
-				<Panier items={products} />
-				<PanierTotal />
+				<Panier items={panier} />
+				<PanierTotal panier={panier} />
 			</Sidenav>
 		</React.Fragment>
 	);

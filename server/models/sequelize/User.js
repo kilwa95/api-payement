@@ -30,13 +30,6 @@ User.init(
 );
 
 const persistUserFields = async (user) => {
-	user.roles.map((role) => {
-		if (role === 'MERCHANT') {
-			return (user.valid = false);
-		} else {
-			return (user.valid = true);
-		}
-	});
 	user.password = await bcrypt.hash(user.password, await bcrypt.genSalt());
 };
 User.addHook('beforeCreate', persistUserFields);
