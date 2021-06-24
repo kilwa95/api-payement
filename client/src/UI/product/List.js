@@ -8,7 +8,7 @@ const List = ({ items, setBadge, setPanier, panier }) => {
 				{items.map((product) => (
 					<Product
 						id={product.id}
-						items={panier}
+						panier={panier}
 						setBadge={setBadge}
 						key={product.id}
 						titre={product.titre}

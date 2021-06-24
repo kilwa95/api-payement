@@ -68,8 +68,8 @@ POST http://localhost:3001/products
 Content-Type: application/json    
 
 {
-    "titre": "Cat Tee Black T-Shirt",
-    "price": 10,
+    "titre": "logo Tee Black T-Shirt",
+    "price": 14,
     "image": "https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg"
    
 }

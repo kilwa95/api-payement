@@ -1,17 +1,23 @@
 import './Product.css';
 import Button from '../button/Button';
 import panierHttp from '../../services/panierHttp';
+import { useState } from 'react';
 
-const Product = ({ id, image, titre, price, items, setPanier }) => {
+const Product = ({ id, image, titre, price, panier, setPanier }) => {
+	const [ isPanier, setIsPanier ] = useState(false);
+
 	const addProductPanier = async () => {
 		const body = {
 			userId: 1,
 			productId: id
 		};
 
-		const result = await panierHttp.saveProductsPanier(body);
-		console.log(result.data.data.panier);
-		setPanier([ ...items, result.data.data.panier ]);
+		let ids = panier.map((item) => item.product.id);
+		if (!ids.includes(id)) {
+			const result = await panierHttp.saveProductsPanier(body);
+			setPanier([ ...panier, result.data.data.panier ]);
+		}
+		setIsPanier(true);
 	};
 
 	return (
@@ -19,7 +25,11 @@ const Product = ({ id, image, titre, price, items, setPanier }) => {
 			<img className="product-image" src={image} alt={titre} />
 			<p className="product-titre">{titre} </p>
 			<div className="product-price"> {price} € </div>
-			<Button onClick={addProductPanier} type="add-cart" title="add to carte" />
+			<Button
+				onClick={addProductPanier}
+				type="add-cart"
+				title={isPanier ? 'product in panier' : 'add to carte'}
+			/>
 		</div>
 	);
 };
