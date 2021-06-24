@@ -69,7 +69,7 @@ Content-Type: application/json
 
 {
     "titre": "logo Tee Black T-Shirt",
-    "price": 14,
+    "price": 150,
     "image": "https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg"
    
 }

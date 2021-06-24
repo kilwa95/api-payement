@@ -42,7 +42,7 @@ const HomePage = (props) => {
 			<List panier={panier} setPanier={setPanier} items={products} />
 			<Sidenav onClose={() => setModal(false)} open={modal}>
 				<Panier items={panier} />
-				<PanierTotal />
+				<PanierTotal panier={panier} />
 			</Sidenav>
 		</React.Fragment>
 	);

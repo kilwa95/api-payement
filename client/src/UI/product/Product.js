@@ -1,10 +1,17 @@
 import './Product.css';
 import Button from '../button/Button';
 import panierHttp from '../../services/panierHttp';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Product = ({ id, image, titre, price, panier, setPanier }) => {
 	const [ isPanier, setIsPanier ] = useState(false);
+
+	useEffect(() => {
+		let ids = panier.map((item) => item.product.id);
+		if (ids.includes(id)) {
+			setIsPanier(true);
+		}
+	});
 
 	const addProductPanier = async () => {
 		const body = {
