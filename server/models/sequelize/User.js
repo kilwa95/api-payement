@@ -29,11 +29,11 @@ User.init(
 	}
 );
 
-const persistUserFields = async (user) => {
+const hashPassword  = async (user) => {
 	user.password = await bcrypt.hash(user.password, await bcrypt.genSalt());
 };
-User.addHook('beforeCreate', persistUserFields);
-User.addHook('beforeUpdate', persistUserFields);
+User.addHook('beforeCreate', hashPassword );
+User.addHook('beforeUpdate', hashPassword );
 
 // One To Many
 User.belongsTo(Address, { as: 'address' });

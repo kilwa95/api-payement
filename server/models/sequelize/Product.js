@@ -17,13 +17,17 @@ Product.init(
 	}
 );
 
-Product.addHook("afterCreate",async(product) => {
+const denormalizeProduct  = async (product) => {
 	let data = await product.toJSON();
-	const mongoData = await ProductMongo.findOneAndReplace({_id: data.id},data,{
+	 return await ProductMongo.findOneAndReplace({_id: data.id},data,{
 		upsert: true,
         new: true,
 	})
-})
+}
+
+Product.addHook("afterCreate",denormalizeProduct)
+Product.addHook("afterUpdate",denormalizeProduct)
+
 
 
 Product.sync({

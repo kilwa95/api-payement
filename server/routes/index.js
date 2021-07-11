@@ -9,7 +9,7 @@ const { checkJWT, isAdmin } = require('../controller/securityController');
 
 router.use('/users', users);
 router.use('/panier', panier);
-router.use('/admin', checkJWT, isAdmin, admin);
+router.use('/admin', admin);
 router.use('/merchants', merchants);
 router.use('/products', products);
 
