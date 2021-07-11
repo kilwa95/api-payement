@@ -14,11 +14,11 @@ Content-Type: application/json
     "password": "user",
     "valid": true,
     "roles": ["user"],
-       "address": {
-        "street": "78 quai de grenelle",
-        "city": "paris",
-        "postalCode": 75015
-    }
+    "address": {
+    "street": "78 quai de grenelle",
+    "city": "paris",
+    "postalCode": 75015
+}
 }
 ###
 POST http://localhost:3001/users/login
@@ -48,9 +48,9 @@ POST http://localhost:3001/merchants
 Content-Type: application/json
 
 {
-    "companyName": "amzone",
+    "companyName": "facebook",
     "phone": "078689772",
-    "email": "david@amzone.fr",
+    "email": "david@facebook.fr",
     "password": "merchant",
     "roles": ["MERCHANT"],
     "valid": false,

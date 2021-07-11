@@ -1,12 +1,11 @@
 const Panier = require('../models/sequelize/Panier');
 const Product = require('../models/sequelize/Product');
-const User = require('../models/sequelize/User');
 
 exports.findAllProductsPanierById = async (query, id) => {
 	const { product, user, ...rest } = query;
 	try {
 		return await Panier.findAll({
-			attributes: [],
+			attributes: ['id'],
 			where: {
 				userId: id
 			},
