@@ -5,7 +5,7 @@ exports.findAllProductsPanierById = async (query, id) => {
 	const { product, user, ...rest } = query;
 	try {
 		return await Panier.findAll({
-			attributes: [],
+			attributes: ['userId'],
 			where: {
 				userId: id
 			},

@@ -1,4 +1,5 @@
 const Product = require('../models/sequelize/Product');
+const ProductMongo = require('../models/mongo/Product');
 
 exports.saveProduct = async (body) => {
 	try {
@@ -11,7 +12,7 @@ exports.saveProduct = async (body) => {
 
 exports.findAllProducts = async (query) => {
 	try {
-		return await Product.findAll({});
+		return await ProductMongo.find({});
 	} catch (error) {
 		console.error(error);
 	}
