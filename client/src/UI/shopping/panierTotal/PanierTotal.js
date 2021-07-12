@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useContext } from 'react';
 import './PanierTotal.css';
 import Button from '../../button/Button';
+import { ListContext } from "../../../contexts/ListContext";
 
-const PanierTotal = ({ panier }) => {
-	const [ totalPrice, setTotalPrice ] = useState(0);
 
-	useEffect(
-		() => {
-			const total = panier.reduce((acc, item) => acc + item.product.price, 0);
-			setTotalPrice(total);
-		},
-		[ panier ]
-	);
+const PanierTotal = () => {
+	const { totalPrice } = useContext(ListContext);
+
+
 	return (
 		<div className="panier-total">
 			<div className="panier-total-subtotal">

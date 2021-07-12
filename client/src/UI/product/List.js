@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useContext} from "react";
 import Product from '../product/Product';
+import { ListContext } from "../../contexts/ListContext";
 
-const List = ({ items, setBadge, setPanier, panier }) => {
+
+const List = () => {
+	const { products } = useContext(ListContext);
+
 	return (
 		<div className="container mt-5">
 			<div className="d-flex flex-wrap">
-				{items.map((product) => (
+				{products.map((product) => (
 					<Product
 						id={product.id}
-						panier={panier}
-						setBadge={setBadge}
 						key={product.id}
 						titre={product.titre}
 						price={product.price}
 						image={product.image}
-						setPanier={setPanier}
 					/>
 				))}
 			</div>
