@@ -1,10 +1,14 @@
 import './Product.css';
 import Button from '../button/Button';
 import panierHttp from '../../services/panierHttp';
-import { useState, useEffect } from 'react';
+import { useState, useEffect , useContext} from 'react';
+import { ListContext } from "../../contexts/ListContext";
 
-const Product = ({ id, image, titre, price, panier, setPanier }) => {
+
+const Product = ({ id, image, titre, price}) => {
 	const [ isPanier, setIsPanier ] = useState(false);
+	const { panier , addPanier } = useContext(ListContext);
+
 
 	useEffect(() => {
 		let ids = panier.map((item) => item.product.id);
@@ -22,7 +26,7 @@ const Product = ({ id, image, titre, price, panier, setPanier }) => {
 		let ids = panier.map((item) => item.product.id);
 		if (!ids.includes(id)) {
 			const result = await panierHttp.saveProductsPanier(body);
-			setPanier([ ...panier, result.data.data.panier ]);
+			addPanier(result.data.data.panier )
 		}
 		setIsPanier(true);
 	};

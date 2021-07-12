@@ -1,11 +1,14 @@
-import React from 'react';
+import React , {useContext} from 'react';
 import '../menu/Menu.css';
 import CartShopping from '../shopping/CartShopping';
 import Logo from '../menu/Logo';
 import Search from '../menu/Serach';
+import { ListContext } from "../../contexts/ListContext";
 
-const Menu = (props) => {
-	let { badge, setModal } = props;
+
+const Menu = ({ setModal }) => {
+	const { badge } = useContext(ListContext);
+
 	return (
 		<div className="menu">
 			<div style={{ width: '300px' }}>
