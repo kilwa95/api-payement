@@ -2,6 +2,8 @@ const { Model, DataTypes } = require('sequelize');
 const connection = require('../../config/sequelize');
 const Product = require('./Product');
 const User = require('./User');
+const Transaction = require('./Transaction');
+
 
 class Panier extends Model {}
 
@@ -15,8 +17,11 @@ Panier.init(
 
 Panier.belongsTo(Product, { as: 'product' });
 Panier.belongsTo(User, { as: 'user' });
+Panier.belongsTo(Transaction, { as: 'transaction' });
+
 Product.hasMany(Panier, { foreignKey: 'productId', as: 'writtenproducts' });
 User.hasMany(Panier, { foreignKey: 'userId', as: 'writtenusers' });
+Transaction.hasMany(Panier, { foreignKey: 'transactionId', as: 'writtenpanier' });
 
 Panier.sync({
 	alter: true
