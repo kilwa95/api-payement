@@ -28,10 +28,12 @@ Address.hasMany(Transaction, { foreignKey: 'addressId', as: 'transactions' });
 const denormalizeTransaction = async (transaction) => {
 	console.log(transaction)
 	const sequelizeData  = await Transaction.findByPk(transaction.id,{
+		attributes: ['id','priceTotal'],
 		include: [
 			{
 			model: User,
 			as: "user",
+			attributes: ['id','firstName','lastName','phone','email'],
 			},
 		]
 	})
@@ -41,7 +43,7 @@ const denormalizeTransaction = async (transaction) => {
 }
 
 
-Transaction.addHook("afterCreate", denormalizeTransaction);
+// Transaction.addHook("afterCreate", denormalizeTransaction);
 
 Transaction.sync({
 	alter: true
