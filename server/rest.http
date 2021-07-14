@@ -82,8 +82,44 @@ Content-Type: application/json
 
 {
     "userId": 1,
-    "productId": 2
+    "productId": 1
 }
+
+###
+POST http://localhost:3001/transactions
+Content-Type: application/json
+
+{
+    "priceTotal": 300,
+    "userId": 1,
+     "panier": [
+      {
+        "product": {
+          "id": 1,
+          "titre": "logo Tee Black T-Shirt",
+          "price": 150,
+          "image": "https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg"
+        },
+        "product": {
+            "id": 2,
+            "titre": "logo Tee Black T-Shirt",
+            "price": 150,
+            "image": "https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg",
+            "updatedAt": "2021-07-14T12:08:56.226Z",
+            "createdAt": "2021-07-14T12:08:56.226Z"
+        },
+         "product": {
+            "id": 3,
+            "titre": "logo Tee Black T-Shirt",
+            "price": 150,
+            "image": "https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg",
+            "updatedAt": "2021-07-14T12:08:56.226Z",
+            "createdAt": "2021-07-14T12:08:56.226Z"
+        }
+      }
+    ]
+
+} 
 
 
 

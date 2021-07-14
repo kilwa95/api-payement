@@ -6,7 +6,7 @@ exports.findAllProductsPanierById = async (query, id) => {
 	const { product, user, ...rest } = query;
 	try {
 		return await Panier.findAll({
-			attributes: [],
+			attributes: ['userId','transactionId'],
 			where: {
 				userId: id
 			},
@@ -49,6 +49,14 @@ exports.saveProductPanier = async (body) => {
 	try {
 		const panier = new Panier(body);
 		return await panier.save();
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+exports.updatePanierTransaction = async (transactionId,ids) => {
+	try {
+		Panier.update({transactionId: transactionId},{where: {id:ids}})
 	} catch (error) {
 		console.error(error);
 	}
