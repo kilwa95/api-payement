@@ -86,6 +86,9 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:3001/transactions
+
+###
 POST http://localhost:3001/transactions
 Content-Type: application/json
 

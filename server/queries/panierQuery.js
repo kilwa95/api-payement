@@ -6,7 +6,7 @@ exports.findAllProductsPanierById = async (query, id) => {
 	const { product, user, ...rest } = query;
 	try {
 		return await Panier.findAll({
-			attributes: ['userId','transactionId'],
+			attributes: [],
 			where: {
 				userId: id
 			},
@@ -15,6 +15,25 @@ exports.findAllProductsPanierById = async (query, id) => {
 					model: Product,
 					as: 'product',
 					where: product,
+					attributes: [ 'id', 'titre', 'price', 'image' ]
+				}
+			]
+		});
+	} catch (error) {
+		console.error(error);
+	}
+};
+exports.findAllProductsPanierByTransactionId = async (transactionId ) => {
+	try {
+		return await Panier.findAll({
+			attributes: [],
+			where: {
+				transactionId: transactionId
+			},
+			include: [
+				{
+					model: Product,
+					as: 'product',
 					attributes: [ 'id', 'titre', 'price', 'image' ]
 				}
 			]
