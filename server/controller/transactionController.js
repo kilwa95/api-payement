@@ -11,7 +11,7 @@ exports.SaveTransaction= async (req, res, next) => {
     res.status(200).json({
         action: req.baseUrl,
         method: req.method,
-        data: { resultat }
+        data: { transaction }
     });
 
 }

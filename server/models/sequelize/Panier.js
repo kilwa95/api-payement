@@ -19,9 +19,9 @@ Panier.belongsTo(Product, { as: 'product' });
 Panier.belongsTo(User, { as: 'user' });
 Panier.belongsTo(Transaction, { as: 'transaction' });
 
-Product.hasMany(Panier, { foreignKey: 'productId', as: 'writtenproducts' });
-User.hasMany(Panier, { foreignKey: 'userId', as: 'writtenusers' });
-Transaction.hasMany(Panier, { foreignKey: 'transactionId', as: 'writtenpanier' });
+Product.hasMany(Panier, { foreignKey: 'productId', as: 'paniers' });
+User.hasMany(Panier, { foreignKey: 'userId', as: 'paniers' });
+Transaction.hasMany(Panier, { foreignKey: 'transactionId', as: 'paniers' });
 
 Panier.sync({
 	alter: true
