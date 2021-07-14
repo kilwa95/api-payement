@@ -21,7 +21,6 @@ exports.FetchTransactions= async (req, res, next) => {
     const transactionsJson = transactions.map(transaction => transaction.toJSON())
 
     for (let transaction in transactionsJson) {
-        console.log('transaction',transaction)
         transactionsJson[transaction].products = await findAllProductsPanierByTransactionId(transactionsJson[transaction].id)
     }
     
@@ -29,7 +28,7 @@ exports.FetchTransactions= async (req, res, next) => {
     res.status(200).json({
         action: req.baseUrl,
         method: req.method,
-        data: { transactionsJson }
+        data: { transactions:transactionsJson }
     });
 
 }

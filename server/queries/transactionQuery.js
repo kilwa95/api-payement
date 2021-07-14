@@ -1,5 +1,6 @@
 const Transaction = require('../models/sequelize/Transaction');
 const User = require('../models/sequelize/User');
+const Address = require('../models/sequelize/Address');
 
 
 exports.saveTransaction = async (body) => {
@@ -20,6 +21,10 @@ exports.findAllTransactions = async () => {
 				model: User,
 				as: "user",
 				attributes: ['id','firstName','lastName','phone','email'],
+				},
+				{
+				model: Address,
+				as: "delivery",
 				},
 			]
 		});

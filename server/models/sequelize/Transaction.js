@@ -21,7 +21,7 @@ Transaction.init(
 );
 
 Transaction.belongsTo(User, { as: 'user' });
-Transaction.belongsTo(Address, { as: 'address' });
+Transaction.belongsTo(Address, { as: 'delivery' });
 User.hasMany(Transaction, { foreignKey: 'userId', as: 'transactions' });
 Address.hasMany(Transaction, { foreignKey: 'addressId', as: 'transactions' });
 

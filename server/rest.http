@@ -7,12 +7,17 @@ POST http://localhost:3001/users
 Content-Type: application/json
 
 {
-    "firstName": "sami",
+    "firstName": "pierre",
     "lastName": "abd",
     "phone": "078689772",
-    "email": "sami@gmail.com",
+    "email": "pierre@gmail.com",
     "password": "user",
     "valid": true,
+    "address": {
+        "street": "35 quai de grenelle",
+        "city": "paris",
+        "postalCode": 15
+    },
     "roles": ["user"],
        "address": {
         "street": "78 quai de grenelle",
@@ -94,6 +99,7 @@ Content-Type: application/json
 
 {
     "priceTotal": 300,
+    "deliveryId": 8,
     "userId": 1,
      "panier": [
       {
@@ -102,22 +108,6 @@ Content-Type: application/json
           "titre": "logo Tee Black T-Shirt",
           "price": 150,
           "image": "https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg"
-        },
-        "product": {
-            "id": 2,
-            "titre": "logo Tee Black T-Shirt",
-            "price": 150,
-            "image": "https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg",
-            "updatedAt": "2021-07-14T12:08:56.226Z",
-            "createdAt": "2021-07-14T12:08:56.226Z"
-        },
-         "product": {
-            "id": 3,
-            "titre": "logo Tee Black T-Shirt",
-            "price": 150,
-            "image": "https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg",
-            "updatedAt": "2021-07-14T12:08:56.226Z",
-            "createdAt": "2021-07-14T12:08:56.226Z"
         }
       }
     ]
