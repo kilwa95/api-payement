@@ -37,7 +37,7 @@ User.addHook('beforeUpdate', persistUserFields);
 
 // One To Many
 User.belongsTo(Address, { as: 'address' });
-Address.hasMany(User, { foreignKey: 'addressId', as: 'writtenAdress' });
+Address.hasMany(User, { foreignKey: 'addressId', as: 'users' });
 
 User.sync({
 	alter: true

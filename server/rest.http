@@ -7,18 +7,18 @@ POST http://localhost:3001/users
 Content-Type: application/json
 
 {
-    "firstName": "sami",
-    "lastName": "abd",
+    "firstName": "admin",
+    "lastName": "admin",
     "phone": "078689772",
-    "email": "sami@gmail.com",
-    "password": "user",
+    "email": "admin@gmail.com",
+    "password": "admin",
     "valid": true,
-    "roles": ["user"],
-       "address": {
-        "street": "78 quai de grenelle",
+    "address": {
+        "street": "35 quai de grenelle",
         "city": "paris",
-        "postalCode": 75015
-    }
+        "postalCode": 15
+    },
+    "roles": ["admin"]
 }
 ###
 POST http://localhost:3001/users/login
@@ -48,9 +48,9 @@ POST http://localhost:3001/merchants
 Content-Type: application/json
 
 {
-    "companyName": "amzone",
+    "companyName": "facebook",
     "phone": "078689772",
-    "email": "david@amzone.fr",
+    "email": "david@facebook.fr",
     "password": "merchant",
     "roles": ["MERCHANT"],
     "valid": false,
@@ -82,8 +82,32 @@ Content-Type: application/json
 
 {
     "userId": 1,
-    "productId": 2
+    "productId": 1
 }
+
+###
+GET http://localhost:3001/transactions
+
+###
+POST http://localhost:3001/transactions
+Content-Type: application/json
+
+{
+    "priceTotal": 300,
+    "deliveryId": 8,
+    "userId": 1,
+     "panier": [
+      {
+        "product": {
+          "id": 1,
+          "titre": "logo Tee Black T-Shirt",
+          "price": 150,
+          "image": "https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg"
+        }
+      }
+    ]
+
+} 
 
 
 

@@ -1,12 +1,11 @@
 const { findAllUsers, saveUser, findUserByEmail } = require('../queries/usersQuery');
+const { saveAddress } = require('../queries/addressQuery');
 const security = require('../services/security');
 
 exports.auth = async (req, res, next) => {
 	const { email, password } = req.body;
 	try {
 		const user = await findUserByEmail(email);
-		console.log(user.toJSON());
-
 		if (user) {
 			const token = security.comparePassword(password, user);
 			res.header('Authorization', 'Bearer ' + token);
@@ -35,8 +34,12 @@ exports.fetchUsers = async (req, res, next) => {
 };
 
 exports.saveUsers = async (req, res, next) => {
+	const {address, ...rest} = req.body
+
 	try {
-		const user = await saveUser(req.body);
+		const addressId = await saveAddress(address)
+		rest.addressId = addressId;
+		const user = await saveUser(rest);
 		res.status(201).json({
 			action: req.baseUrl,
 			method: req.method,
