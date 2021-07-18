@@ -7,23 +7,18 @@ POST http://localhost:3001/users
 Content-Type: application/json
 
 {
-    "firstName": "pierre",
-    "lastName": "abd",
+    "firstName": "admin",
+    "lastName": "admin",
     "phone": "078689772",
-    "email": "pierre@gmail.com",
-    "password": "user",
+    "email": "admin@gmail.com",
+    "password": "admin",
     "valid": true,
     "address": {
         "street": "35 quai de grenelle",
         "city": "paris",
         "postalCode": 15
     },
-    "roles": ["user"],
-       "address": {
-        "street": "78 quai de grenelle",
-        "city": "paris",
-        "postalCode": 75015
-    }
+    "roles": ["admin"]
 }
 ###
 POST http://localhost:3001/users/login
@@ -53,9 +48,9 @@ POST http://localhost:3001/merchants
 Content-Type: application/json
 
 {
-    "companyName": "amzone",
+    "companyName": "facebook",
     "phone": "078689772",
-    "email": "david@amzone.fr",
+    "email": "david@facebook.fr",
     "password": "merchant",
     "roles": ["MERCHANT"],
     "valid": false,

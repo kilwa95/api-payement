@@ -12,7 +12,8 @@ const PanierTotal = () => {
 		const data = {
 			panier,
 			priceTotal:totalPrice,
-			userId: 1
+			userId: 1,
+			deliveryId: 1
 		}
 		transactionHttp.saveTransaction(data)
 	}

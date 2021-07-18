@@ -1,12 +1,13 @@
 const Panier = require('../models/sequelize/Panier');
 const Product = require('../models/sequelize/Product');
 const User = require('../models/sequelize/User');
+const Transaction_panier = require('../models/sequelize/Transaction_panier');
 
 exports.findAllProductsPanierById = async (query, id) => {
 	const { product, user, ...rest } = query;
 	try {
 		return await Panier.findAll({
-			attributes: [],
+			// attributes: [],
 			where: {
 				userId: id
 			},
@@ -25,18 +26,10 @@ exports.findAllProductsPanierById = async (query, id) => {
 };
 exports.findAllProductsPanierByTransactionId = async (transactionId ) => {
 	try {
-		return await Panier.findAll({
-			attributes: [],
+		return await Transaction_panier.findAll({
 			where: {
-				transactionId: transactionId
+				TransactionId: transactionId
 			},
-			include: [
-				{
-					model: Product,
-					as: 'product',
-					attributes: [ 'id', 'titre', 'price', 'image' ]
-				}
-			]
 		});
 	} catch (error) {
 		console.error(error);
