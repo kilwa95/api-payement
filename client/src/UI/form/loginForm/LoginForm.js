@@ -24,7 +24,7 @@ const LoginForm = ({ onSubmit, error }) => {
 	return (
 		<div className="login-form">
 			<div className="login-form-col">
-				<h1>Connexion Admin</h1>
+				<h1>Connexion user</h1>
 				<p>Connectez vous avec votre compte</p>
 				<CForm onSubmit={_onSubmit}>
 					<CInputGroup className="mb-3">

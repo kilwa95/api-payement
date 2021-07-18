@@ -16,12 +16,21 @@ import {
 
     const getUser = () => {
       const user = localStorage.getItem('user');
-      return user;
+      return JSON.parse(user);
     };
 
     const [ token, setToken ] = useState(getToken);
     const [ user, setUser ] = useState(getUser);
 
+    const logout = useCallback(
+      async () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setToken('');
+        setUser('');
+         },
+      [token,user]
+      );
 
     const saveToken = useCallback(
 		async (item) => {
@@ -34,6 +43,7 @@ import {
       
     const saveUser = useCallback(
 		async (item) => {
+      console.log(item);
 			localStorage.setItem('user', JSON.stringify(item));
 		    setUser(item);
 		},
@@ -47,6 +57,7 @@ import {
             user,
             saveToken,
             saveUser,
+            logout
           }}
         >
           {children}

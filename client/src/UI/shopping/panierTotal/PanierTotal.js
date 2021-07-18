@@ -3,17 +3,21 @@ import './PanierTotal.css';
 import Button from '../../button/Button';
 import { ListContext } from "../../../contexts/ListContext";
 import transactionHttp from '../../../services/transactionhttp'
+import { CredentialContext } from "../../../contexts/CredentialContext";
+
 
 
 const PanierTotal = () => {
 	const { totalPrice , panier } = useContext(ListContext);
+	const { user } = useContext(CredentialContext);
 
 	const createTransaction = () => {
 		const data = {
 			panier,
 			priceTotal:totalPrice,
-			userId: 1,
-			deliveryId: 1
+			userId: user.id,
+			deliveryId: user.addressId
+			,
 		}
 		transactionHttp.saveTransaction(data)
 	}

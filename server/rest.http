@@ -7,10 +7,10 @@ POST http://localhost:3001/users
 Content-Type: application/json
 
 {
-    "firstName": "user",
-    "lastName": "user",
+    "firstName": "khaled",
+    "lastName": "abd",
     "phone": "078689772",
-    "email": "user@gmail.com",
+    "email": "khaled@gmail.com",
     "password": "user",
     "valid": true,
     "address": {
