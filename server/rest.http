@@ -7,18 +7,18 @@ POST http://localhost:3001/users
 Content-Type: application/json
 
 {
-    "firstName": "admin",
-    "lastName": "admin",
+    "firstName": "user",
+    "lastName": "user",
     "phone": "078689772",
-    "email": "admin@gmail.com",
-    "password": "admin",
+    "email": "user@gmail.com",
+    "password": "user",
     "valid": true,
     "address": {
         "street": "35 quai de grenelle",
         "city": "paris",
         "postalCode": 15
     },
-    "roles": ["admin"]
+    "roles": ["user"]
 }
 ###
 POST http://localhost:3001/users/login

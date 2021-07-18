@@ -8,23 +8,34 @@ import {
 
 
   export default function CredentialsProvider({ children }) {
-    const [ token, setToken ] = useState('');
-    const [ user, setUser ] = useState({});
+
+    const getToken = () => {
+      const token = localStorage.getItem('token');
+      return token;
+    };
+
+    const getUser = () => {
+      const user = localStorage.getItem('user');
+      return user;
+    };
+
+    const [ token, setToken ] = useState(getToken);
+    const [ user, setUser ] = useState(getUser);
 
 
     const saveToken = useCallback(
-		async () => {
-			localStorage.setItem('token', token);
-			setToken(token);
+		async (item) => {
+			localStorage.setItem('token', item);
+			setToken(item);
 		},
 		[token]
 	  );
 
       
     const saveUser = useCallback(
-		async () => {
-			localStorage.setItem('user', JSON.stringify(user));
-		    setUser(user);
+		async (item) => {
+			localStorage.setItem('user', JSON.stringify(item));
+		    setUser(item);
 		},
 		[user]
 	  );
