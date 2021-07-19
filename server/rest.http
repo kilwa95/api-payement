@@ -7,18 +7,18 @@ POST http://localhost:3001/users
 Content-Type: application/json
 
 {
-    "firstName": "khaled",
+    "firstName": "admin",
     "lastName": "abd",
     "phone": "078689772",
-    "email": "khaled@gmail.com",
-    "password": "user",
+    "email": "admin@gmail.com",
+    "password": "admin",
     "valid": true,
     "address": {
         "street": "35 quai de grenelle",
         "city": "paris",
         "postalCode": 15
     },
-    "roles": ["user"]
+    "roles": ["admin"]
 }
 ###
 POST http://localhost:3001/users/login
@@ -48,9 +48,9 @@ POST http://localhost:3001/merchants
 Content-Type: application/json
 
 {
-    "companyName": "facebook",
+    "companyName": "ECE",
     "phone": "078689772",
-    "email": "david@facebook.fr",
+    "email": "david@ECE.fr",
     "password": "merchant",
     "roles": ["MERCHANT"],
     "valid": false,
