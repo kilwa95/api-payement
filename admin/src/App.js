@@ -5,6 +5,7 @@ import Layout from '../src/UI/layout/Layout';
 import LoginPage from './views/LoginPage';
 import useToken from './hooks/useToken';
 import useUser from './hooks/useUser';
+import MerchantProvider from './contexts/MerchantContext'
 
 const App = () => {
 	const { token, setToken } = useToken();
@@ -19,7 +20,9 @@ const App = () => {
 			<React.Suspense>
 				<BrowserRouter>
 					<Switch>
+						<MerchantProvider>
 						<Route path="/" name="Home" render={(props) => <Layout {...props} />} />
+						</MerchantProvider>
 					</Switch>
 				</BrowserRouter>
 			</React.Suspense>
