@@ -17,7 +17,7 @@ Panier.init(
 
 Panier.belongsTo(Product, { as: 'product' });
 Panier.belongsTo(User, { as: 'user' });
-Panier.belongsTo(Transaction, { as: 'transaction' });
+// Panier.belongsTo(Transaction, { as: 'transaction' });
 
 Product.hasMany(Panier, { foreignKey: 'productId', as: 'paniers' });
 User.hasMany(Panier, { foreignKey: 'userId', as: 'paniers' });

@@ -1,36 +1,11 @@
-import React, { useEffect, useState } from 'react';
-
-import merchantsHttp from '../services/merchantsHttp';
+import React, {  useContext } from 'react';
 import { CDataTable, CCard, CCardBody } from '@coreui/react';
 import Switch from '../UI/switch/Switch';
+import { MerchantContext } from "../contexts/MerchantContext";
 
-const MerchantPage = (props) => {
-	const [ merchants, setMerchants ] = useState([]);
 
-	const fields = [
-		{
-			key: 'activate_company',
-			label: '',
-			sorter: false,
-			filter: false
-		},
-		{ key: 'companyName' },
-		{ key: 'email' },
-		{ key: 'phone' },
-		{ key: 'valid' },
-		{ key: 'city' },
-		{ key: 'postalCode' },
-		{ key: 'street' }
-	];
-
-	useEffect(() => {
-		async function fetchData() {
-			const merchants = await merchantsHttp.fetchMerchants();
-			setMerchants(merchants.data.data.merchants);
-		}
-		fetchData();
-	}, []);
-
+const MerchantPage = () => {
+	const { merchants, fields } = useContext(MerchantContext);
 	return (
 		<CCard>
 			<CCardBody>
@@ -47,7 +22,7 @@ const MerchantPage = (props) => {
 					columnFilter
 					scopedSlots={{
 						activate_company: (item) => {
-							return <Switch setMerchants={setMerchants} merchants={merchants} item={item} />;
+							return <Switch  item={item} />;
 						},
 						city: (item) => {
 							return <td className="py-2">{item.address.city}</td>;

@@ -48,9 +48,9 @@ POST http://localhost:3001/merchants
 Content-Type: application/json
 
 {
-    "companyName": "ECE",
+    "companyName": "green",
     "phone": "078689772",
-    "email": "david@ECE.fr",
+    "email": "david@green.fr",
     "password": "merchant",
     "roles": ["MERCHANT"],
     "valid": false,
