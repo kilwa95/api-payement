@@ -21,7 +21,9 @@ const Body = (props) => {
 										name={route.name}
 										render={(props) => (
 											<CFade>
-												<route.component {...props} />
+												<route.provider>
+													<route.component {...props} />
+												</route.provider>
 											</CFade>
 										)}
 									/>
