@@ -25,6 +25,20 @@ services:
     working_dir: /home/node/app
     command: sh -c "npm install --no-update-notifier; npm start --no-update-notifier"
 
+  api:
+    image: node:alpine3.10
+    ports:
+      - 3003:3003
+    environment:
+      PORT: 3003
+      MONGO_URL: "mongodb://root:password@mongo/app"
+      DATABASE_URL: "postgres://root:password@db/app"
+      SECRET_KEY: RXCT34ZE5GFDSFD756
+    volumes:
+      - ./api:/home/node/app
+    working_dir: /home/node/app
+    command: sh -c "npm install --no-update-notifier; npm start --no-update-notifier"
+
   client:
     image: node:alpine3.10
     ports:
