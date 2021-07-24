@@ -6,6 +6,7 @@ import { MerchantContext } from "../contexts/MerchantContext";
 
 const MerchantPage = () => {
 	const { merchants, fields } = useContext(MerchantContext);
+	
 	return (
 		<CCard>
 			<CCardBody>
@@ -22,7 +23,7 @@ const MerchantPage = () => {
 					columnFilter
 					scopedSlots={{
 						activate_company: (item) => {
-							return <Switch  item={item} />;
+							return <Switch item={item} />;
 						},
 						city: (item) => {
 							return <td className="py-2">{item.address.city}</td>;
