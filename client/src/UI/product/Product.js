@@ -11,7 +11,7 @@ const Product = ({ id, image, titre, price}) => {
 
 
 	useEffect(() => {
-		let ids = panier.map((item) => item.product.id);
+		let ids = panier.map((item) => item.id);
 		if (ids.includes(id)) {
 			setIsPanier(true);
 		}
@@ -19,14 +19,12 @@ const Product = ({ id, image, titre, price}) => {
 
 	const addProductPanier = async () => {
 		const body = {
-			userId: 1,
-			productId: id
+			id, image, titre, price
 		};
 
-		let ids = panier.map((item) => item.product.id);
+		let ids = panier.map((item) => item.id);
 		if (!ids.includes(id)) {
-			const result = await panierHttp.saveProductsPanier(body);
-			addPanier(result.data.data.panier )
+			addPanier(body)
 		}
 		setIsPanier(true);
 	};

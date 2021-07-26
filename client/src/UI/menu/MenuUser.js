@@ -14,6 +14,11 @@ import { Dropdown } from 'react-bootstrap';
 const MenuUser = ({ setModal}) => {
     const { badge } = useContext(ListContext);
     const { user ,logout } = useContext(CredentialContext);
+    // const history = useHistory()
+
+    // const seeOrdered = () => {
+    //     history.push('/ordereds')
+    // }
 
 	return (
 		<div className="menu">
@@ -29,7 +34,7 @@ const MenuUser = ({ setModal}) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                <Dropdown.Item href="#">account</Dropdown.Item>
+                {/* <Dropdown.Item onClick={seeOrdered}>commandes</Dropdown.Item> */}
                 <Dropdown.Item onClick={logout} >logout</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
