@@ -14,7 +14,7 @@ const LoginPage = () => {
 	const onSubmit = async (values) => {
 		const data = await usersHttp.loginUser(values);
 		let { user, token } = data;
-		if (user.roles.includes('user')) {
+		if (user) {
 			setError('');
 			saveToken(token);
 			saveUser(user);

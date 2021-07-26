@@ -1,24 +1,22 @@
 import React , {useContext} from 'react';
 import { useHistory } from "react-router-dom";
 import '../menu/Menu.css';
-import CartShopping from '../shopping/CartShopping';
 import Logo from '../menu/Logo';
 import Search from '../menu/Serach';
-import { ListContext } from "../../contexts/ListContext";
 import { CredentialContext } from "../../contexts/CredentialContext";
 import { Dropdown } from 'react-bootstrap';
 
 
-
-
-const MenuUser = ({ setModal}) => {
-    const { badge } = useContext(ListContext);
+const MenuMerchant = ({ setModal}) => {
     const { user ,logout } = useContext(CredentialContext);
-    // const history = useHistory()
+    const history = useHistory()
 
-    // const seeOrdered = () => {
-    //     history.push('/ordereds')
-    // }
+    const seeOrdered = () => {
+        history.push('/ordereds')
+    }
+    const seeCredentials = () => {
+        history.push('/credentials')
+    }
 
 	return (
 		<div className="menu">
@@ -30,17 +28,17 @@ const MenuUser = ({ setModal}) => {
 			</div>
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                {user.firstName + ' ' + user.lastName}
+                    {user ? user.companyName : ''}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                {/* <Dropdown.Item onClick={seeOrdered}>commandes</Dropdown.Item> */}
+                <Dropdown.Item onClick={seeOrdered}>commandes</Dropdown.Item>
+                <Dropdown.Item onClick={seeCredentials}>credentials</Dropdown.Item>
                 <Dropdown.Item onClick={logout} >logout</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-            <CartShopping onClick={() => setModal(true)} badge={badge} />
 
 		</div>
 	);
 };
-export default MenuUser;
+export default MenuMerchant;

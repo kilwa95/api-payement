@@ -1,19 +1,18 @@
 import React , {useContext} from 'react';
 import { useHistory } from "react-router-dom";
 import '../menu/Menu.css';
-import CartShopping from '../shopping/CartShopping';
 import Logo from '../menu/Logo';
 import Search from '../menu/Serach';
 import { ListContext } from "../../contexts/ListContext";
+import { Dropdown } from 'react-bootstrap';
+
 
 
 const Menu = ({ setModal }) => {
 	const { badge } = useContext(ListContext);
 	let history = useHistory();
 
-	const login = () => {
-		history.push("/login");
-	}
+
 
 	return (
 		<div className="menu">
@@ -24,9 +23,26 @@ const Menu = ({ setModal }) => {
 				<Search />
 			</div>
 			<div className="menu-btns">
-				<button onClick={login} className="btn btn-outline-success">account user</button>
-				<button className="btn btn-outline-info"> account merchant</button>
-				<CartShopping onClick={() => setModal(true)} badge={badge} />
+			<Dropdown>
+                <Dropdown.Toggle variant="outline-success" id="dropdown-basic">
+				account user
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                <Dropdown.Item onClick={() => history.push("/login")}>login</Dropdown.Item>
+                <Dropdown.Item onClick={() => history.push("/registrationUser")}>registration</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+			<Dropdown>
+                <Dropdown.Toggle variant="outline-info" id="dropdown-basic">
+				account merchant
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                <Dropdown.Item onClick={() => history.push("/login")}>login</Dropdown.Item>
+                <Dropdown.Item onClick={() => history.push("/login")}>registration</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
 			</div>
 		</div>
 	);

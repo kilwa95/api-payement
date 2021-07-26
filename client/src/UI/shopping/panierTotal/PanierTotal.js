@@ -2,24 +2,26 @@ import React, { useEffect, useState , useContext } from 'react';
 import './PanierTotal.css';
 import Button from '../../button/Button';
 import { ListContext } from "../../../contexts/ListContext";
-import transactionHttp from '../../../services/transactionhttp'
+import orderedHttp from '../../../services/orderedHttp'
 import { CredentialContext } from "../../../contexts/CredentialContext";
 
 
 
 const PanierTotal = () => {
-	const { totalPrice , panier } = useContext(ListContext);
+	const { totalPrice , panier , deletePanier } = useContext(ListContext);
 	const { user } = useContext(CredentialContext);
 
-	const createTransaction = () => {
+	const createOrderd = () => {
 		const data = {
-			panier,
+			products: panier,
 			priceTotal:totalPrice,
 			userId: user.id,
-			deliveryId: user.addressId
-			,
+			deliveryId: user.addressId,
+			status: "created",
+			
 		}
-		transactionHttp.saveTransaction(data)
+		orderedHttp.saveOrdered(data)
+		deletePanier()
 	}
 
 
@@ -29,7 +31,7 @@ const PanierTotal = () => {
 				<div className="subtotal">subtotal</div>
 				<div className="panier-total-price">$ {totalPrice}</div>
 			</div>
-			<Button onClick={createTransaction} title="Checkout" />
+			<Button onClick={createOrderd} title="Checkout" />
 		</div>
 	);
 };

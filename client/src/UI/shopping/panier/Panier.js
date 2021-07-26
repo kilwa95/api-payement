@@ -13,7 +13,7 @@ const Panier = () => {
 	return (
 		<div className="panier">
 			{panier.map((item) => (
-				<CartProduct titre={item.product.titre} price={item.product.price} image={item.product.image} />
+				<CartProduct titre={item.titre} price={item.price} image={item.image} />
 			))}
 		</div>
 	);
