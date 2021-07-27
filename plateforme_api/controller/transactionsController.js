@@ -1,30 +1,28 @@
 const { HTTP, isEmpty } = require('../Helper');
 
-const { saveTransaction , findAllTransactions} = require('../queries/transactionQuery')
+const { createTransaction, findAllTransactions, findOneTransaction, updateTransaction } = require('../queries/transactionQuery');
 
 exports.createUserTransaction = async (req, res) => {
   try {
-    const { priceTotal, quote, delivery, userId, commandId } = req.body;
+    const { priceTotal, quote, delivery, commandId, clientInformation, panierUser, mid } = req.body;
 
-
-    if (isEmpty([priceTotal, quote, delivery, userId, commandId ])) {
+    if (isEmpty([priceTotal, quote, delivery, mid, commandId, clientInformation, panierUser])) {
       return res.status(HTTP.BAD_REQUEST).json({ error: 'BAD_REQUEST' });
     }
 
-
-    const body = {
+    const transaction = await createTransaction({
       priceTotal,
       quote,
       delivery,
-      userId, 
+      userId: mid,
       commandId,
-      status: 'created'
-    };
+      clientInformation,
+      panierUser,
+      status: 'created',
+    });
 
-    const transaction = await saveTransaction(body)
-    
     return res.status(HTTP.OK).json({
-      data: {transaction},
+      data: { transaction },
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
@@ -33,11 +31,10 @@ exports.createUserTransaction = async (req, res) => {
 
 exports.getListeTransactions = async (req, res) => {
   try {
-
-    const transactions = await findAllTransactions()
+    const transactions = await findAllTransactions();
 
     return res.status(HTTP.OK).json({
-      data: {transactions},
+      data: { transactions },
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
@@ -46,31 +43,35 @@ exports.getListeTransactions = async (req, res) => {
 
 exports.getTransactionInformations = async (req, res) => {
   try {
-    const { params } = req.body; // req.params, req.query
+    const { tid } = req.params;
 
-    if (isEmpty([params])) {
+    if (isEmpty([tid])) {
       return res.status(HTTP.BAD_REQUEST).json({ error: 'BAD_REQUEST' });
     }
+    const transaction = await findOneTransaction(tid);
 
     return res.status(HTTP.OK).json({
-      data: {},
+      data: { transaction },
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
   }
 };
 
-//  Afficher l’historique des différents statuts de la transaction
-exports.getTransactionHistory = async (req, res) => {
+exports.updateTransaction = async (req, res) => {
   try {
-    const { params } = req.body; // req.params, req.query
+    const { status } = req.body;
+    const { tid } = req.params;
 
-    if (isEmpty([params])) {
+    if (isEmpty([status, tid])) {
       return res.status(HTTP.BAD_REQUEST).json({ error: 'BAD_REQUEST' });
     }
+    const keys = { status };
+    await updateTransaction(keys, tid);
+    const transaction = await findOneTransaction(tid);
 
     return res.status(HTTP.OK).json({
-      data: {},
+      data: { transaction },
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });

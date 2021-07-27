@@ -2,11 +2,10 @@
 /* eslint-disable max-len */
 const { HTTP, isEmpty } = require('../Helper');
 const { createUser } = require('../queries/usersQuery');
-const { findAllMerchants , findMerchantById , updateMerchant } = require('../queries/merchantsQuery');
-const oidcTokenHash = require('oidc-token-hash');
+const { findAllMerchants, findMerchantById, updateMerchant } = require('../queries/usersQuery');
+const { generateClientTokens } = require('./securityController');
 
 exports.createMerchant = async (req, res) => {
-  console.log(req)
   try {
     const { email, password, companyName, kbis, tel, site, urlConfirmation, urlAnnulation, quote } = req.body;
 
@@ -42,8 +41,7 @@ exports.createMerchant = async (req, res) => {
 
 exports.getListMerchants = async (req, res) => {
   try {
-    const merchants = await findAllMerchants()
-    console.log(merchants.map(item => item.toJSON()));
+    const merchants = await findAllMerchants();
     return res.status(HTTP.OK).json({
       data: { merchants },
     });
@@ -52,11 +50,11 @@ exports.getListMerchants = async (req, res) => {
   }
 };
 
-// '/merchants/:mid(\\d+)'
 exports.getMarchandInformations = async (req, res) => {
-  console.log(req.params)
   try {
-    const merchant = await findMerchantById(req.params)
+    const { mid } = req.params;
+    const merchant = await findMerchantById(mid);
+    merchant.password = undefined;
     return res.status(HTTP.OK).json({
       data: { merchant },
     });
@@ -65,43 +63,34 @@ exports.getMarchandInformations = async (req, res) => {
   }
 };
 
-// '/merchants/:mid(\\d+)/validate'
-// Validation manuelle du compte Générer un jeu de credentials (client_token & client_secret)
 exports.valideteAccountMarchand = async (req, res) => {
-  const access_token = 'YmJiZTAwYmYtMzgyOC00NzhkLTkyOTItNjJjNDM3MGYzOWIy9sFhvH8K_x8UIHj1osisS57f5DduL-ar_qw5jl3lthwpMjm283aVMQXDmoqqqydDSqJfbhptzw8rUVwkuQbolw';
-  const body = { 
-    clientToken: oidcTokenHash.generate(access_token, 'RS256'),
-    clientSecret: oidcTokenHash.generate(access_token, 'HS384'),
-    valid: true
-  }
   try {
-    await updateMerchant(body, req.params);
-    const merchant = await findMerchantById(req.params);
+    const { mid } = req.params;
+    const { clientToken, clientSecret } = generateClientTokens();
+    const keys = { clientToken, clientSecret, valid: true };
+    await updateMerchant(keys, mid);
+    const merchant = await findMerchantById(mid);
+    merchant.password = undefined;
     return res.status(HTTP.OK).json({
       data: { merchant },
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
   }
-
 };
 
-// '/merchants/:mid(\\d+)/credentials'
-// Credentials (les supprimer et d’en générer des nouveaux)
 exports.generateNewCredentials = async (req, res) => {
-  const access_token = 'YmJiZTAwYmYtMzgyOC00NzhkLTkyOTItNjJjNDM3MGYzOWIy9sFhvH8K_x8UIHj1osisS57f5DduL-ar_qw5jl3lthwpMjm283aVMQXDmoqqqydDSqJfbhptzw8rUVwkuQbolw';
-  const body = { 
-    clientToken: oidcTokenHash.generate(access_token, 'RS256'),
-    clientSecret: oidcTokenHash.generate(access_token, 'HS384'),
-  }
   try {
-    await updateMerchant(body, req.params);
-    const merchant = await findMerchantById(req.params);
+    const { mid } = req.params;
+    const { clientToken, clientSecret } = generateClientTokens();
+    const keys = { clientToken, clientSecret };
+    await updateMerchant(keys, mid);
+    const merchant = await findMerchantById(mid);
+    merchant.password = undefined;
     return res.status(HTTP.OK).json({
       data: { merchant },
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
   }
-
 };

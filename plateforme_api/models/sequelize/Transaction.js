@@ -10,13 +10,14 @@ Transaction.init(
     delivery: DataTypes.STRING,
     status: DataTypes.STRING,
     quote: DataTypes.STRING,
+    clientInformation: DataTypes.STRING,
     panierUser: DataTypes.STRING,
-    commandId: DataTypes.INTEGER,
+    commandId: DataTypes.STRING,
   },
   {
     sequelize: connection,
     modelName: 'Transaction',
-  },
+  }
 );
 
 Transaction.belongsTo(User, { as: 'user' });

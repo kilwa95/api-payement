@@ -1,16 +1,23 @@
+/* eslint-disable object-curly-newline */
 const { HTTP, isEmpty } = require('../Helper');
+const { createOperation, findAllOperationsByTid, findOneOperation, updateOperation } = require('../queries/operationsQuery');
 
-// Créer des opérations, remboursement (partiel ou intégral)
 exports.createOperation = async (req, res) => {
   try {
-    const { params } = req.body; // req.params, req.query
+    const { type, tid } = req.body;
 
-    if (isEmpty([params])) {
+    if (isEmpty([type, tid])) {
       return res.status(HTTP.BAD_REQUEST).json({ error: 'BAD_REQUEST' });
     }
 
+    const operation = await createOperation({
+      type,
+      transactionId: tid,
+      status: 'created',
+    });
+
     return res.status(HTTP.OK).json({
-      data: {},
+      data: { operation },
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
@@ -19,14 +26,15 @@ exports.createOperation = async (req, res) => {
 
 exports.getOperations = async (req, res) => {
   try {
-    const { params } = req.body; // req.params, req.query
+    const { tid } = req.query;
 
-    if (isEmpty([params])) {
+    if (isEmpty([tid])) {
       return res.status(HTTP.BAD_REQUEST).json({ error: 'BAD_REQUEST' });
     }
 
+    const operations = await findAllOperationsByTid(tid);
     return res.status(HTTP.OK).json({
-      data: {},
+      data: { operations },
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
@@ -35,48 +43,35 @@ exports.getOperations = async (req, res) => {
 
 exports.getOperation = async (req, res) => {
   try {
-    const { params } = req.body; // req.params, req.query
+    const { oid } = req.params;
 
-    if (isEmpty([params])) {
+    if (isEmpty([oid])) {
       return res.status(HTTP.BAD_REQUEST).json({ error: 'BAD_REQUEST' });
     }
+    const operation = await findOneOperation(oid);
 
     return res.status(HTTP.OK).json({
-      data: {},
+      data: { operation },
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
   }
 };
 
-// Afficher l’historique des différents statuts de l’operation
-exports.getOperationHistory = async (req, res) => {
+exports.updateOperation = async (req, res) => {
   try {
-    const { params } = req.body; // req.params, req.query
+    const { status } = req.body;
+    const { oid } = req.params;
 
-    if (isEmpty([params])) {
+    if (isEmpty([status, oid])) {
       return res.status(HTTP.BAD_REQUEST).json({ error: 'BAD_REQUEST' });
     }
+    const keys = { status };
+    await updateOperation(keys, oid);
+    const operation = await findOneOperation(oid);
 
     return res.status(HTTP.OK).json({
-      data: {},
-    });
-  } catch (error) {
-    return res.status(HTTP.SERVER_ERROR).json({ error });
-  }
-};
-
-// recevoir les notifications de validation d’opérations par le PSP
-exports.validateOperation = async (req, res) => {
-  try {
-    const { params } = req.body; // req.params, req.query
-
-    if (isEmpty([params])) {
-      return res.status(HTTP.BAD_REQUEST).json({ error: 'BAD_REQUEST' });
-    }
-
-    return res.status(HTTP.OK).json({
-      data: {},
+      data: { operation },
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });

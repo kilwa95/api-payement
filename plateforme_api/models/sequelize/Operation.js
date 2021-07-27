@@ -8,16 +8,12 @@ Operation.init(
   {
     type: DataTypes.STRING,
     status: DataTypes.STRING,
-    date: DataTypes.DATE,
   },
   {
     sequelize: connection,
     modelName: 'Operation',
-  },
+  }
 );
-
-Operation.belongsTo(Transaction, { as: 'transaction' });
-Transaction.hasMany(Operation, { foreignKey: 'userId', as: 'operations' });
 
 Operation.belongsTo(Transaction, { as: 'transaction' });
 Transaction.hasMany(Operation, { foreignKey: 'transactionId', as: 'operations' });
@@ -26,4 +22,4 @@ Operation.sync({
   alter: true,
 });
 
-module.exports = Transaction;
+module.exports = Operation;

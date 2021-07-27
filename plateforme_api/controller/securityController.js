@@ -1,17 +1,19 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const oidcTokenHash = require('oidc-token-hash');
 const { HTTP, isEmpty } = require('../Helper');
 const { findUserByEmail } = require('../queries/usersQuery');
 
 const { SECRET_KEY } = process.env;
 const TOKEN_EXPIRE_IN = 24 * 60 * 60;
+const ACCESS_TOKEN =  'YmJiZTAwYmYtMzgyOC00NzhkLTkyOTItNjJjNDM3MGYzOWIy9sFhvH8K_x8UIHj1osisS57f5DduL-ar_qw5jl3lthwpMjm283aVMQXDmoqqqydDSqJfbhptzw8rUVwkuQbolw';
 
 function checkPassword(password1, password2) {
   return bcrypt.compare(password1, password2);
 }
 
-function generateToken(session, secretKey = SECRET_KEY, expiresIn = TOKEN_EXPIRE_IN) {
-  return jwt.sign({ session }, secretKey, { expiresIn });
+function generateToken(decoded, secretKey = SECRET_KEY, expiresIn = TOKEN_EXPIRE_IN) {
+  return jwt.sign({ ...decoded }, secretKey, { expiresIn });
 }
 
 function getTokenFromRequest(req) {
@@ -35,15 +37,12 @@ async function authorisationJWT(req, res, next) {
   try {
     const token = getTokenFromRequest(req);
     const decoded = await getDecodedFromToken(token);
-
     if (!token || !decoded) {
       return res.status(HTTP.UNAUTHORIZED).json({ error: 'UNAUTHORIZED' });
     }
-
-    req.session = decoded.session;
-
-    const newToken = generateToken(decoded.session);
-    res.header('Authorization', `Bearer ${newToken}`);
+    req.decoded = decoded;
+    // const newToken = generateToken(decoded);
+    // res.header('Authorization', `Bearer ${newToken}`);
     return next();
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
@@ -52,10 +51,10 @@ async function authorisationJWT(req, res, next) {
 
 async function logout(req, res) {
   try {
-    req.session = null;
+    req.decoded = null;
     return res.status(HTTP.OK).json({});
-  } catch (err) {
-    return res.status(HTTP.SERVER_ERROR).json({ error: '' });
+  } catch (error) {
+    return res.status(HTTP.SERVER_ERROR).json({ error });
   }
 }
 
@@ -75,17 +74,18 @@ async function login(req, res) {
 
     const isPasswordOk = checkPassword(password, user.password);
 
-    if (!isPasswordOk) {
+    if (!isPasswordOk || !(user.role === 'admin' || user.valid)) {
       return res.status(HTTP.UNAUTHORIZED).json({ error: 'UNAUTHORIZED' });
     }
 
-    const session = { id: user.id, role: user.role, isAdmin: user.role && user.role === 'admin' };
-    const token = generateToken(session);
+    const decoded = { id: user.id, role: user.role, isAdmin: user.role === 'admin' };
+    const token = generateToken(decoded);
 
     res.header('Authorization', `Bearer ${token}`);
 
+    user.password = undefined;
     return res.status(HTTP.OK).json({
-      data: { user,token },
+      data: { user },
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
@@ -94,35 +94,45 @@ async function login(req, res) {
 
 function isAuthorised(req, res, next) {
   try {
-    if (!req.session) {
-      res.status(HTTP.UNAUTHORIZED).json({ error: 'UNAUTHORIZED' });
+    if (!req.decoded) {
+      return res.status(HTTP.UNAUTHORIZED).json({ error: 'UNAUTHORIZED' });
     }
-    const { id, isAdmin } = req.session;
+    const { id, isAdmin } = req.decoded;
     const mid = req.params.mid || req.body.mid || req.query.mid;
     const isAuth = isAdmin || id == mid;
     if (!isAuth) {
       return res.status(HTTP.UNAUTHORIZED).json({ error: 'UNAUTHORIZED' });
     }
     return next();
-  } catch (err) {
-    return res.status(HTTP.SERVER_ERROR).json({ error: '' });
+  } catch (error) {
+    return res.status(HTTP.SERVER_ERROR).json({ error });
   }
 }
 
 function onlyAdmin(req, res, next) {
   try {
-    if (req.session && req.session.isAdmin) {
+    if (req.decoded && req.decoded.isAdmin) {
       return next();
     }
     return res.status(HTTP.UNAUTHORIZED).json({ error: 'UNAUTHORIZED' });
-  } catch (err) {
-    return res.status(HTTP.SERVER_ERROR).json({ error: '' });
+  } catch (error) {
+    return res.status(HTTP.SERVER_ERROR).json({ error });
   }
 }
+
+function generateClientTokens() {
+  const tokens = {
+    clientToken: oidcTokenHash.generate(ACCESS_TOKEN, 'RS256'),
+    clientSecret: oidcTokenHash.generate(ACCESS_TOKEN, 'HS384'),
+  };
+  return tokens;
+}
+
 module.exports = {
   authorisationJWT,
   login,
   logout,
   isAuthorised,
   onlyAdmin,
+  generateClientTokens,
 };
