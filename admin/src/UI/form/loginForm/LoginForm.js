@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import { CForm, CInput, CInputGroup, CButton } from '@coreui/react';
+import { useHistory  } from "react-router-dom";
 import './LoginForm.css';
 
-import { CForm, CInput, CInputGroup, CButton } from '@coreui/react';
+
+
 
 const LoginForm = ({ onSubmit, error }) => {
+    const history = useHistory()
+
 	const [ values, setValues ] = useState({
 		email: '',
 		password: ''
@@ -25,7 +30,10 @@ const LoginForm = ({ onSubmit, error }) => {
 		<div className="login-form">
 			<div className="login-form-col">
 				<h1>Connexion Admin</h1>
-				<p>Connectez vous avec votre compte</p>
+				<div>
+				<p>Vous n'avez pas de compte ? </p>
+				<a onClick={() => history.push('/registration')} href="#">Veiller inscrire</a>
+				</div>
 				<CForm onSubmit={_onSubmit}>
 					<CInputGroup className="mb-3">
 						<CInput

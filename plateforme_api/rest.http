@@ -1,0 +1,86 @@
+
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "email": "green@gmail.fr",
+    "password": "admin"
+}
+
+###
+
+POST http://localhost:4000/logout
+Content-Type: application/json
+
+###
+POST http://localhost:4000/merchants
+Content-Type: application/json
+
+{
+    "email": "green@gmail.fr",
+    "password": "admin",
+    "companyName": "green",
+    "kbis": "green",
+    "tel": 6645675677,
+    "site": "www.green.com",
+    "urlConfirmation": "http://localhost:3003/commandes/1/confirmation",
+    "urlAnnulation": "http://localhost:3003/commandes/1/annulation",
+    "quote": "quoteA"
+}
+###
+
+GET http://localhost:4000/merchants
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjp7ImlkIjoxOCwicm9sZSI6ImFkbWluIiwiaXNBZG1pbiI6dHJ1ZX0sImlhdCI6MTYyNzI4OTAxMiwiZXhwIjoxNjI3Mzc1NDEyfQ.ESnFTxFmg_n-k7jR-65TWc5F8ZEVUMkPbOg0IbFudYM
+###
+
+GET http://localhost:4000/merchants/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjp7ImlkIjoxOCwicm9sZSI6ImFkbWluIiwiaXNBZG1pbiI6dHJ1ZX0sImlhdCI6MTYyNzI4OTAxMiwiZXhwIjoxNjI3Mzc1NDEyfQ.ESnFTxFmg_n-k7jR-65TWc5F8ZEVUMkPbOg0IbFudYM
+###
+
+PUT http://localhost:4000/merchants/1/validate
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjp7ImlkIjoxOCwicm9sZSI6ImFkbWluIiwiaXNBZG1pbiI6dHJ1ZX0sImlhdCI6MTYyNzI4OTAxMiwiZXhwIjoxNjI3Mzc1NDEyfQ.ESnFTxFmg_n-k7jR-65TWc5F8ZEVUMkPbOg0IbFudYM
+###
+DELETE http://localhost:4000/merchants/1/credentials
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjp7ImlkIjoxOCwicm9sZSI6ImFkbWluIiwiaXNBZG1pbiI6dHJ1ZX0sImlhdCI6MTYyNzI4OTAxMiwiZXhwIjoxNjI3Mzc1NDEyfQ.ESnFTxFmg_n-k7jR-65TWc5F8ZEVUMkPbOg0IbFudYM
+###
+
+
+POST http://localhost:4000/transactions
+Content-Type: application/json
+
+{
+    "priceTotal": 300,
+    "quote": "quoteA",
+    "delivery": "35 quai de grenelle ",
+    "userId": 1,
+    "commandId": 1,
+    "products": [
+        {
+        "id": 1,
+        "titre": "logo Tee Black T-Shirt",
+        "price": 150,
+        "image": "https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg",
+        "createdAt": "2021-07-24T14:25:29.712Z",
+        "updatedAt": "2021-07-24T14:25:29.712Z"
+      },
+        {
+        "id": 2,
+        "titre": "logo Tee Black T-Shirt",
+        "price": 150,
+        "image": "https://rawcdn.githack.com/jeffersonRibeiro/react-shopping-cart/ccf64841ddfdfedfce9821b2b7ff2c8075afb17c/src/static/products/12064273040195392_1.jpg",
+        "createdAt": "2021-07-24T14:25:31.183Z",
+        "updatedAt": "2021-07-24T14:25:31.183Z"
+        }
+    ]
+}
+###
+GET http://localhost:4000/transactions
+Content-Type: application/json
+
+
+
+

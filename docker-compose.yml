@@ -11,19 +11,20 @@ services:
       - ./SampleCollections:/usr/local/sampleCollections
     working_dir: /usr/local/sampleCollections
 
-  server:
-    image: node:alpine3.10
-    ports:
-      - 3001:3001
-    environment:
-      PORT: 3001
-      MONGO_URL: "mongodb://root:password@mongo/app"
-      DATABASE_URL: "postgres://root:password@db/app"
-      SECRET_KEY: RXCT34ZE5GFDSFD756
-    volumes:
-      - ./server:/home/node/app
-    working_dir: /home/node/app
-    command: sh -c "npm install --no-update-notifier; npm start --no-update-notifier"
+
+  plateforme_api:
+      image: node:alpine3.10
+      ports:
+        - 4000:4000
+      environment:
+        PORT: 4000
+        MONGO_URL: "mongodb://root:password@mongo/plateformeDB"
+        DATABASE_URL: "postgres://root:password@plateformeDB/plateformeDB"
+        SECRET_KEY: RXCT34ZE5GFDSFD756
+      volumes:
+        - ./plateforme_api:/home/node/app
+      working_dir: /home/node/app
+      command: sh -c "npm install --no-update-notifier; npm start --no-update-notifier"
 
   api:
     image: node:alpine3.10
@@ -31,8 +32,8 @@ services:
       - 3003:3003
     environment:
       PORT: 3003
-      MONGO_URL: "mongodb://root:password@mongo/app"
-      DATABASE_URL: "postgres://root:password@db/app"
+      MONGO_URL: "mongodb://root:password@mongo/merchantDB"
+      DATABASE_URL: "postgres://root:password@merchantDB/merchantDB"
       SECRET_KEY: RXCT34ZE5GFDSFD756
     volumes:
       - ./api:/home/node/app
@@ -59,14 +60,25 @@ services:
     working_dir: /home/node/app
     command: sh -c "npm install; npm start"
 
-  db:
+  plateformeDB:
     image: postgres:alpine
     environment:
-      POSTGRES_DB: app
+      POSTGRES_DB: plateformeDB
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
     ports:
       - 5432:5432
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+
+  merchantDB:
+    image: postgres:alpine
+    environment:
+      POSTGRES_DB: merchantDB
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5433:5432
     volumes:
       - db-data:/var/lib/postgresql/data:rw
 
