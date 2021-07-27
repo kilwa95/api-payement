@@ -25,15 +25,6 @@ const MerchantPage = () => {
 						activate_company: (item) => {
 							return <Switch item={item} />;
 						},
-						city: (item) => {
-							return <td className="py-2">{item.address.city}</td>;
-						},
-						postalCode: (item) => {
-							return <td className="py-2">{item.address.postalCode}</td>;
-						},
-						street: (item) => {
-							return <td className="py-2">{item.address.street}</td>;
-						}
 					}}
 				/>
 			</CCardBody>

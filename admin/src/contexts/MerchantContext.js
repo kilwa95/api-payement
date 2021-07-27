@@ -21,12 +21,13 @@ import merchantsHttp from '../services/merchantsHttp'
         filter: false
       },
       { key: 'companyName' },
-      { key: 'email' },
-      { key: 'phone' },
       { key: 'valid' },
-      { key: 'city' },
-      { key: 'postalCode' },
-      { key: 'street' }
+      { key: 'email' },
+      { key: 'kbis' },
+      { key: 'quote' },
+      { key: 'site' },
+      { key: 'urlAnnulation' },
+      { key: 'urlConfirmation' }
     ];
 
     useEffect(() => {

@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 
 const LoginPage = ({ setToken, setUser }) => {
 	const [ error, setError ] = useState('');
-	const { token } = useToken();
+	const {token} = useToken();
 
 	const onSubmit = async (values) => {
 		const data = await usersHttp.loginUser(values);
@@ -26,6 +26,7 @@ const LoginPage = ({ setToken, setUser }) => {
 	if(token){
 		return <Redirect to="/" />
 	}
+
 	return <LoginForm error={error} onSubmit={onSubmit} />;
 };
 

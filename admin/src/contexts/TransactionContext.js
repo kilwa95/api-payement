@@ -34,6 +34,14 @@ import {
 		fetchData();
 	}, []);
 
+    useEffect(() => {
+        async function fetchData() {
+            const transactions = await transactionHttp.fetchTransactions();
+            setTransactions(transactions.data.data.transactions);
+        }
+		fetchData();
+	}, []);
+
 
     return (
         <TransactionContext.Provider

@@ -6,12 +6,12 @@ POST {{baseUrl}}/merchants HTTP/1.1
 Content-Type: {{contentType}}
 
 {
-    "email":"ccc@ccc.ccc",
-    "password":"ccc",
-    "companyName":"ccc",
-    "kbis":"ccc",
-    "tel":"ccc",
-    "site":"ccc",
+    "email":"admin@gmail.com",
+    "password":"admin",
+    "companyName":"amazon",
+    "kbis":"amazon",
+    "tel":"06577677",
+    "site":"www.amazon,.com",
     "urlConfirmation":"urlConfirmation",
     "urlAnnulation":"urlAnnulation",
     "quote":"quote"
@@ -27,8 +27,8 @@ POST {{baseUrl}}/login HTTP/1.1
 Content-Type: {{contentType}}
 
 {
-    "email":"ccc@ccc.ccc",
-    "password":"ccc"
+    "email":"admin@gmail.com",
+    "password":"admin"
 }
 
 ### Les Marchands
@@ -36,7 +36,7 @@ GET {{baseUrl}}/merchants HTTP/1.1
 Authorization: {{authToken}}
 
 ###
-GET {{baseUrl}}/merchants/40
+GET {{baseUrl}}/merchants/2
 Authorization: {{authToken}}
 
 ###

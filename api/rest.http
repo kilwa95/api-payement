@@ -27,15 +27,15 @@ Content-Type: application/json
 {
     "firstName": "khaled",
     "lastName": "abd",
-    "email": "kahled@gmail.com",
-    "password": "user",
+    "email": "eddy@gamil.com",
+    "password": "admin",
     "valid": true,
     "address": {
         "street": "35 quai de grenelle",
         "city": "paris",
         "postalCode": 15
     },
-    "roles": ["user"]
+    "roles": ["admin"]
 }
 ###
 POST http://localhost:3003/login

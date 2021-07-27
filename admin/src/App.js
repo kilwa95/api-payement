@@ -8,6 +8,7 @@ import useToken from './hooks/useToken';
 import useUser from './hooks/useUser';
 
 
+
 const App = () => {
 	const { setToken } = useToken();
 	const { setUser } = useUser();
@@ -18,7 +19,7 @@ const App = () => {
 			<React.Suspense>
 				<BrowserRouter>
 					<Switch>
-						<Route exact path="/" name="Home" render={(props) => <Layout {...props} />} />
+						<Route path="/" name="Home" render={(props) => <Layout {...props} />} />
 						<Route exact path="/registration" name="Registration" render={(props) => <RegistrationPage {...props} />} />
 						<Route exact path="/login" name="login" render={(props) => <LoginPage {...props} setUser={setUser} setToken={setToken} />} />
 					</Switch>

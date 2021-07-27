@@ -67,7 +67,7 @@ exports.valideteAccountMarchand = async (req, res) => {
   try {
     const { mid } = req.params;
     const { clientToken, clientSecret } = generateClientTokens();
-    const keys = { clientToken, clientSecret, valid: true };
+    const keys = { clientToken, clientSecret, valid: req.body.valid };
     await updateMerchant(keys, mid);
     const merchant = await findMerchantById(mid);
     merchant.password = undefined;

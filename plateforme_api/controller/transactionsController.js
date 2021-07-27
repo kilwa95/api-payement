@@ -20,6 +20,7 @@ exports.createUserTransaction = async (req, res) => {
       panierUser,
       status: 'created',
     });
+    console.log(transaction)
 
     return res.status(HTTP.OK).json({
       data: { transaction },
