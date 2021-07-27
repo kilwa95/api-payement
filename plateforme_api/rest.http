@@ -1,0 +1,113 @@
+@baseUrl = http://localhost:4000
+@contentType = application/json
+@authToken = {{login.response.headers.Authorization}}
+
+POST {{baseUrl}}/merchants HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "email":"admin@gmail.com",
+    "password":"admin",
+    "companyName":"amazon",
+    "kbis":"amazon",
+    "tel":"06577677",
+    "site":"www.amazon,.com",
+    "urlConfirmation":"urlConfirmation",
+    "urlAnnulation":"urlAnnulation",
+    "quote":"quote"
+}
+
+### Authentification
+POST {{baseUrl}}/logout HTTP/1.1
+Authorization: {{authToken}}
+
+###
+# @name login
+POST {{baseUrl}}/login HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+    "email":"admin@gmail.com",
+    "password":"admin"
+}
+
+### Les Marchands
+GET {{baseUrl}}/merchants HTTP/1.1
+Authorization: {{authToken}}
+
+###
+GET {{baseUrl}}/merchants/2
+Authorization: {{authToken}}
+
+###
+PUT {{baseUrl}}/merchants/40/validate
+Content-Type: {{contentType}}
+Authorization: {{authToken}}
+
+###
+DELETE {{baseUrl}}/merchants/40/credentials
+Content-Type: {{contentType}}
+Authorization: {{authToken}}
+
+
+
+### Les Transaction
+POST {{baseUrl}}/transactions
+Content-Type: {{contentType}}
+Authorization: {{authToken}}
+
+{
+    "priceTotal": "100",
+    "quote": "Euro",
+    "delivery": "adresse",
+    "mid":"40",
+    "commandId": "1234",
+    "clientInformation": "aaa aa aaaaa aa aaaaaa",
+    "date": "date",
+    "panierUser": "3 x Jeans, 2 x T-shirts"
+}
+
+###
+GET {{baseUrl}}/transactions?mid=40
+Authorization: {{authToken}}
+
+###
+GET {{baseUrl}}/transactions/1?mid=40
+Authorization: {{authToken}}
+
+
+###
+PUT {{baseUrl}}/transactions/1?mid=40
+Content-Type: {{contentType}}
+Authorization: {{authToken}}
+
+{
+    "status": "new"
+}
+
+###
+POST  {{baseUrl}}/operations?mid=40
+Content-Type: {{contentType}}
+Authorization: {{authToken}}
+
+{
+    "type":"buy", 
+    "tid":"1"
+}
+
+###
+GET  {{baseUrl}}/operations?mid=40&tid=1
+Authorization: {{authToken}}
+
+###
+GET  {{baseUrl}}/operations/1?mid=40
+Authorization: {{authToken}}
+
+###
+PUT  {{baseUrl}}/operations/1?mid=40
+Content-Type: {{contentType}}
+Authorization: {{authToken}}
+
+{
+    "status": "new"
+}

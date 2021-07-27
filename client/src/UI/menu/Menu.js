@@ -13,8 +13,8 @@ const Menu = ({ setModal }) => {
 	let history = useHistory();
 
 
-
 	return (
+		
 		<div className="menu">
 			<div style={{ width: '300px' }}>
 				<Logo />
@@ -33,6 +33,7 @@ const Menu = ({ setModal }) => {
                 <Dropdown.Item onClick={() => history.push("/registrationUser")}>registration</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
+			
 			<Dropdown>
                 <Dropdown.Toggle variant="outline-info" id="dropdown-basic">
 				account merchant

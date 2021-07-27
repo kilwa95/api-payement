@@ -2,48 +2,48 @@ GET http://localhost:3003/users
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdE5hbWUiOm51bGwsImxhc3ROYW1lIjpudWxsLCJjb21wYW55TmFtZSI6ImZhY2Vib29rIiwicGhvbmUiOm51bGwsInJvbGVzIjpbInVzZXIiXSwiZW1haWwiOiJraGFsZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkQzF6bGpYWG1mVS9DdVFtL2p2UDY4LnhJZXlqTUJFcnc0eGlpM09keXIzMGFjRWo1U0thazYiLCJjcmVhdGVkQXQiOiIyMDIxLTA2LTEyVDE2OjI5OjE0LjMxNVoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA2LTEyVDE2OjI5OjE0LjMxNVoiLCJhZGRyZXNzSWQiOm51bGx9LCJpYXQiOjE2MjM1MTgxNzEsImV4cCI6MTYyMzYwNDU3MX0.VD4OU-PFD0KClxcksFJNLGjQVL4H3o7RkVssCYvwtpc
 ###
 
-POST http://localhost:3003/merchants
-Content-Type: application/json
+# POST http://localhost:3003/merchants
+# Content-Type: application/json
 
-{
-    "companyName": "sante",
-    "phone": "078689772",
-    "email": "sante@green.fr",
-    "password": "merchant",
-    "roles": ["MERCHANT","admin"],
-    "valid": false,
-    "address": {
-        "street": "78 quai de grenelle",
-        "city": "paris",
-        "postalCode": 75015
-    }
-}
-###
+# {
+#     "companyName": "sante",
+#     "phone": "078689772",
+#     "email": "sante@green.fr",
+#     "password": "merchant",
+#     "roles": ["MERCHANT","admin"],
+#     "valid": false,
+#     "address": {
+#         "street": "78 quai de grenelle",
+#         "city": "paris",
+#         "postalCode": 75015
+#     }
+# }
+# ###
 
 
 POST http://localhost:3003/users
 Content-Type: application/json
 
 {
-    "firstName": "user",
-    "lastName": "user",
-    "email": "user@gmail.com",
-    "password": "user",
+    "firstName": "khaled",
+    "lastName": "abd",
+    "email": "eddy@gamil.com",
+    "password": "admin",
     "valid": true,
     "address": {
         "street": "35 quai de grenelle",
         "city": "paris",
         "postalCode": 15
     },
-    "roles": ["user"]
+    "roles": ["admin"]
 }
 ###
 POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-    "email": "admin@gmail.com",
-    "password": "admin"
+    "email": "kahled@gmail.com",
+    "password": "user"
 }
 
 ###
