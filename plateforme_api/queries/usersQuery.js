@@ -29,7 +29,14 @@ exports.findUserByEmail = async email => {
     console.error(error);
   }
 };
-
+exports.findUserById = async (id) => {
+  try {
+    const user = await User.findOne({ where: { id } });
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
+};
 exports.findAllMerchants = async (req, res) => {
   try {
     const users = await User.findAll({
