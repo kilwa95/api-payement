@@ -68,7 +68,7 @@ Authorization: {{authToken}}
 }
 
 ###
-GET {{baseUrl}}/transactions?mid=40
+GET {{baseUrl}}/transactions?mid=2
 Authorization: {{authToken}}
 
 ###
@@ -86,17 +86,17 @@ Authorization: {{authToken}}
 }
 
 ###
-POST  {{baseUrl}}/operations?mid=40
+POST  {{baseUrl}}/operations?mid=7
 Content-Type: {{contentType}}
 Authorization: {{authToken}}
 
 {
     "type":"buy", 
-    "tid":"1"
+    "tid":"7"
 }
 
 ###
-GET  {{baseUrl}}/operations?mid=40&tid=1
+GET  {{baseUrl}}/operations?mid=40&tid=7
 Authorization: {{authToken}}
 
 ###

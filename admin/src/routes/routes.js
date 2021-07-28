@@ -1,5 +1,6 @@
 import MerchantPage from '../views/MerchantPage';
 import TransactionPage from '../views/TransactionPage';
+import TransactionAdminPage from '../views/TransactionAdminPage'
 import MerchantProvider from '../contexts/MerchantContext'
 import TransactionProvider from '../contexts/TransactionContext'
 
@@ -18,6 +19,13 @@ const routes = [
 		name: 'transactions',
 		provider: TransactionProvider,
 		component: TransactionPage
+	},
+	{
+		exact: true,
+		path: '/transactions',
+		name: 'transactionsAdmin',
+		provider: TransactionProvider,
+		component: TransactionAdminPage
 	}
 ];
 
