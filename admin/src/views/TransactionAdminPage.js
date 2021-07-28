@@ -4,7 +4,7 @@ import { TransactionContext } from "../contexts/TransactionContext";
 
 
 const TransactionAdminPage = () => {
-    const {transactionsMerchant } = useContext(TransactionContext);
+    const {transactionsMerchant , fields } = useContext(TransactionContext);
 	const [details, setDetails] = useState([])
 
 	const toggleDetails = (index) => {

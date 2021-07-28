@@ -4,24 +4,13 @@ import usersHttp from '../services/usersHttp';
 import useToken from '../hooks/useToken';
 import { Redirect } from 'react-router-dom';
 
-function getToken(resultat) {
-  let token = '';
-
-  const authorization = resultat.headers.authorization;
-  if (!!authorization && authorization.startsWith('Bearer ')) {
-    token = authorization.slice(7, authorization.length);
-  }
-  return token;
-}
-
 const LoginPage = ({ setToken, setUser }) => {
   const [error, setError] = useState('');
   const { token } = useToken();
 
   const onSubmit = async values => {
     const data = await usersHttp.loginUser(values);
-    let { user } = data;
-    const token = getToken(data);
+    let { user, token } = data;
     if (user) {
       setError('');
       setToken(token);
