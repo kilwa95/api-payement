@@ -10,11 +10,13 @@ router.post('/psp', (req, res, next) => {
   const { CB } = req.body;
   setTimeout(() => {
     const Api = axios.create({
-      baseURL: 'http://localhost:4000',
+      baseURL: 'http://192.168.240.7:4000',
       timeout: 1000,
     });
+    console.log({oid, CB})
     return Api.get(`/operations/${oid}/validate`);
   }, 1000);
+  return res.status(200).json("ok");
 });
 
 module.exports = router;

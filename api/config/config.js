@@ -1,6 +1,6 @@
 module.exports = {
   plateform: {
-    url: 'http://172.24.0.2:4000',
+    url: 'http://192.168.240.7:4000',
     email: 'khaled.abdulhalim.pro@gmail.com',
     password: 'password',
   },

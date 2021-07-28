@@ -19,9 +19,9 @@ const App = () => {
 			<React.Suspense>
 				<BrowserRouter>
 					<Switch>
-						<Route path="/" name="Home" render={(props) => <Layout {...props} />} />
 						<Route path="/registration" name="Registration" render={(props) => <RegistrationPage {...props} />} />
 						<Route path="/login" name="login" render={(props) => <LoginPage {...props} setUser={setUser} setToken={setToken} />} />
+						<Route path="/" name="Home" render={(props) => <Layout {...props} />} />
 					</Switch>
 				</BrowserRouter>
 			</React.Suspense>
@@ -30,3 +30,6 @@ const App = () => {
 };
 
 export default App;
+
+
+

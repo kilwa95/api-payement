@@ -40,8 +40,8 @@ POST {{baseUrl}}/login
 Content-Type: {{contentType}}
 
 {
-    "email":"admin2@admin.admin",
-    "password":"admin"
+    "email":"admin@admin.admin",
+    "password":"password"
 }
 
 ### Les Marchands
@@ -135,3 +135,16 @@ Content-Type: {{contentType}}
 ### 
 
 
+###
+POST  http://192.168.240.9:4004/psp?oid=4
+Content-Type: {{contentType}}
+
+
+### 
+
+###
+POST  http://localhost:4004/psp?oid=4
+Content-Type: {{contentType}}
+
+
+### 
