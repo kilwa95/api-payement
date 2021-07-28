@@ -17,11 +17,11 @@ Transaction.init(
   {
     sequelize: connection,
     modelName: 'Transaction',
-  }
+  },
 );
 
-//Transaction.belongsTo(User, { as: 'user' });
-//User.hasMany(Transaction, { foreignKey: 'userId', as: 'transactions' });
+Transaction.belongsTo(User, { as: 'user' });
+User.hasMany(Transaction, { foreignKey: 'userId', as: 'transactions' });
 
 Transaction.sync({
   alter: true,
