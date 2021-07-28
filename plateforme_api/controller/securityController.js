@@ -3,7 +3,9 @@ const jwt = require('jsonwebtoken');
 const oidcTokenHash = require('oidc-token-hash');
 const { HTTP, isEmpty } = require('../Helper');
 const { findUserByEmail, findUserById } = require('../queries/usersQuery');
-const { findOneTransaction } = require('../queries/transactionQuery');
+const { createOperation } = require('../queries/operationsQuery');
+const { findOneTransaction, updateTransaction } = require('../queries/transactionQuery');
+const { sendToMarchand, sendToPsp } = require('../services/AxiosApi');
 
 const { SECRET_KEY } = process.env;
 const TOKEN_EXPIRE_IN = 24 * 60 * 60;
@@ -133,9 +135,18 @@ function generateClientTokens() {
 async function validatePaymentPage(req, res) {
   try {
     const { tid } = req.params;
-    const { cardName, cardNumber, expMonth, expYear, cvv } = req.body;
 
     const transaction = await findOneTransaction(tid);
+    await updateTransaction({ status: 'en attente' }, tid);
+
+    const operation = await createOperation({
+      type: 'Capture',
+      transactionId: tid,
+      status: 'created',
+    });
+    await sendToPsp(operation.id, req.body);
+    await sendToMarchand(transaction.commandId, 'en attente');
+
     const user = await findUserById(transaction.userId);
     const { urlConfirmation } = user;
     return res.redirect(`http://localhost:3000/${urlConfirmation}?tid=${tid}`);

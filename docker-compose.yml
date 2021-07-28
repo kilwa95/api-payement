@@ -40,6 +40,17 @@ services:
     working_dir: /home/node/app
     command: sh -c "npm install --no-update-notifier; npm start --no-update-notifier"
 
+  psp:
+    image: node:alpine3.10
+    ports:
+      - 4004:4004
+    environment:
+      PORT: 4004
+    volumes:
+      - ./psp:/home/node/app
+    working_dir: /home/node/app
+    command: sh -c "npm install --no-update-notifier; npm start --no-update-notifier"
+
   client:
     image: node:alpine3.10
     ports:

@@ -4,14 +4,16 @@ import Button from '../../button/Button';
 import { ListContext } from "../../../contexts/ListContext";
 import orderedHttp from '../../../services/orderedHttp'
 import { CredentialContext } from "../../../contexts/CredentialContext";
+import { Redirect } from 'react-router';
 
 
 
 const PanierTotal = () => {
 	const { totalPrice , panier , deletePanier } = useContext(ListContext);
 	const { user } = useContext(CredentialContext);
+	const [url, setUrl]  = useState('')
 
-	const createOrderd = () => {
+	const createOrderd = async () => {
 		const data = {
 			products: panier,
 			priceTotal:totalPrice,
@@ -21,10 +23,14 @@ const PanierTotal = () => {
 			status: "new"
 			
 		}
-		orderedHttp.saveOrdered(data)
+		const res = await  orderedHttp.saveOrdered(data)
+		setUrl(res.data.generatedUrl)
 		deletePanier()
 	}
 
+	if(url){
+		return <Redirect to={`http://localhost:4000${url}`} />
+	}
 
 	return (
 		<div className="panier-total">

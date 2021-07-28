@@ -73,7 +73,7 @@ POST  {{baseUrl}}/commandes
 Content-Type: {{contentType}}
 
 {
-    "products": [{"id":4},{"id":5}],
+    "products": [{"id":1},{"id":2}],
     "priceTotal": 100,
     "factorisation": "factorisation",
     "quote": "euro",
