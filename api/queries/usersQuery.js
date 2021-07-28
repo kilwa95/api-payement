@@ -22,7 +22,7 @@ exports.findAllUsers = async () => {
 };
 exports.saveUser = async (body) => {
   try {
-    const user = await new User({ ...body, roles: ['user'] });
+    const user = await new User(body);
     return await user.save();
   } catch (error) {
     console.error(error);

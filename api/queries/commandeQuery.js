@@ -19,7 +19,7 @@ exports.saveCommande = async (body) => {
 exports.saveCommandeProduct = async (ids,CommandeId) => {
 	try {
 		for (let id in ids) {
-		   await Commande_product.create({CommandeId:CommandeId,ProductId:ids[id]});
+		   await Commande_product.create({commandeId:CommandeId,productId:ids[id]});
 		}
 	   
    } catch (error) {

@@ -7,11 +7,11 @@ POST  {{baseUrl}}/users
 Content-Type: {{contentType}}
 
 {
-    "firstName":"fff",
-    "lastName":"fff",
+    "firstName":"user",
+    "lastName":"user",
     "phone":111,
-    "email":"fff@fff.fff",
-    "password":"fff",
+    "email":"user@user.user",
+    "password":"user",
     "roles": ["user"],
     "address": {
         "street":"street",
@@ -30,8 +30,8 @@ POST {{baseUrl}}/login
 Content-Type: {{contentType}}
 
 {
-    "email":"admin@admin.admin",
-    "password":"admin"
+    "email":"user@user.user",
+    "password":"user"
 }
 ###
 
@@ -59,7 +59,7 @@ Content-Type: {{contentType}}
     "priceTotal": 100,
     "factorisation": "factorisation",
     "quote": "euro",
-    "userId":"16",
+    "userId":"4",
     "status": "new"
 }
 
