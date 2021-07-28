@@ -1,0 +1,137 @@
+@baseUrl = http://localhost:4000
+@contentType = application/json
+@authToken = {{login.response.headers.Authorization}}
+
+### 
+# @name createAdmin
+POST {{baseUrl}}/admin
+Content-Type: {{contentType}}
+
+{
+    "email":"admin@admin.admin",
+    "password":"password"
+}
+
+###
+POST {{baseUrl}}/merchants
+Content-Type: {{contentType}}
+
+{
+    "email":"khaled.abdulhalim.pro@gmail.com",
+    "password":"password",
+    "companyName":"khaled.abdulhalim.pro",
+    "kbis":"kbis12345",
+    "tel":"tel",
+    "site":"site",
+    "urlConfirmation":"urlConfirmation",
+    "urlAnnulation":"urlAnnulation",
+    "quote":"euro"
+}
+
+
+
+### Authentification
+POST {{baseUrl}}/logout
+Authorization: {{authToken}}
+
+###
+# @name login
+POST {{baseUrl}}/login
+Content-Type: {{contentType}}
+
+{
+    "email":"admin2@admin.admin",
+    "password":"admin"
+}
+
+### Les Marchands
+GET {{baseUrl}}/merchants
+Authorization: {{authToken}}
+
+###
+GET {{baseUrl}}/merchants/2
+Authorization: {{authToken}}
+
+###
+PUT {{baseUrl}}/merchants/4/validate
+Content-Type: {{contentType}}
+Authorization: {{authToken}}
+
+###
+DELETE {{baseUrl}}/merchants/2/credentials
+Content-Type: {{contentType}}
+Authorization: {{authToken}}
+
+
+
+### Les Transaction
+POST {{baseUrl}}/transactions
+Content-Type: {{contentType}}
+Authorization: {{authToken}}
+
+{
+    "priceTotal": "100",
+    "quote": "Euro",
+    "delivery": "adresse",
+    "mid":"2",
+    "commandId": "1234",
+    "clientInformation": "aaa aa aaaaa aa aaaaaa",
+    "date": "date",
+    "panierUser": "3 x Jeans, 2 x T-shirts"
+}
+
+###
+GET {{baseUrl}}/transactions?mid=2
+Authorization: {{authToken}}
+
+###
+GET {{baseUrl}}/transactions/1?mid=2
+Authorization: {{authToken}}
+
+
+###
+PUT {{baseUrl}}/transactions/1?mid=2
+Content-Type: {{contentType}}
+Authorization: {{authToken}}
+
+{
+    "status": "new"
+}
+
+###
+POST  {{baseUrl}}/operations?mid=2
+Content-Type: {{contentType}}
+Authorization: {{authToken}}
+
+{
+    "type":"buy", 
+    "tid":"1"
+}
+
+###
+GET  {{baseUrl}}/operations?mid=2&tid=1
+Authorization: {{authToken}}
+
+###
+GET  {{baseUrl}}/operations/1?mid=2
+Authorization: {{authToken}}
+
+###
+PUT  {{baseUrl}}/operations/1?mid=2
+Content-Type: {{contentType}}
+Authorization: {{authToken}}
+
+{
+    "status": "new"
+}
+
+
+
+###
+GET  {{baseUrl}}/paymenturl/1
+Content-Type: {{contentType}}
+
+
+### 
+
+

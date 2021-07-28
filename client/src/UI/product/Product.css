@@ -1,0 +1,23 @@
+.product {
+	width: 233px;
+	height: 537px;
+	display: flex;
+	flex-direction: column;
+	margin-right: 10px;
+	border: 1px solid transparent;
+}
+.product:hover {
+	border: 1px solid #eee;
+}
+
+.product-imgae {
+	width: 233px;
+	height: 337px;
+}
+.product-titre {
+	text-align: center;
+}
+.product-price {
+	font-size: 1.5em;
+	text-align: center;
+}

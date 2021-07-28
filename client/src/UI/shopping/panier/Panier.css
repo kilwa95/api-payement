@@ -1,0 +1,7 @@
+.panier {
+	display: flex;
+	flex-direction: column;
+	min-height: 700px;
+	max-height: 400px;
+	overflow: scroll;
+}

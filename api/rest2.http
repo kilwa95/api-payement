@@ -1,0 +1,103 @@
+@baseUrl = http://localhost:3003
+@contentType = application/json
+@authToken = {{login.response.headers.Authorization}}
+
+###
+POST  {{baseUrl}}/users
+Content-Type: {{contentType}}
+
+{
+    "firstName":"khaled",
+    "lastName":"abdulhalim",
+    "phone":111,
+    "email":"khaled.abdulhalim.pro@gmail.com",
+    "password":"password",
+    "roles": ["admin"],
+    "address": {
+        "street":"street",
+        "city":"city",
+        "postalCode":75015
+    }
+}
+
+###
+POST  {{baseUrl}}/users
+Content-Type: {{contentType}}
+
+{
+    "firstName":"user",
+    "lastName":"user",
+    "phone":111,
+    "email":"user@user.user",
+    "password":"user",
+    "roles": ["user"],
+    "address": {
+        "street":"street",
+        "city":"city",
+        "postalCode":75015
+    }
+}
+
+###
+###
+GET {{baseUrl}}/users
+
+###
+# @name login
+POST {{baseUrl}}/login
+Content-Type: {{contentType}}
+
+{
+    "email":"user@user.user",
+    "password":"user"
+}
+###
+
+###
+POST  {{baseUrl}}/products
+Content-Type: {{contentType}}
+
+{
+    "titre": "p6",
+    "price": "6",
+    "image": "p6"
+}
+
+
+###
+GET  {{baseUrl}}/products
+
+
+###
+POST  {{baseUrl}}/commandes
+Content-Type: {{contentType}}
+
+{
+    "products": [{"id":4},{"id":5}],
+    "priceTotal": 100,
+    "factorisation": "factorisation",
+    "quote": "euro",
+    "userId":"1",
+    "status": "new"
+}
+
+###
+GET  {{baseUrl}}/commandes
+
+###
+GET  {{baseUrl}}/commandes/5
+
+
+###
+PUT  {{baseUrl}}/commandes/5/
+Content-Type: {{contentType}}
+
+{
+    "status":"new"
+}
+
+
+
+###
+GET  {{baseUrl}}/test
+Content-Type: {{contentType}}

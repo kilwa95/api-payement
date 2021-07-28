@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+  <body class="container">
+    <div style="border: 1px solid grey; padding: 10px; margin: 100px auto; max-width: max-content">
+      <form action="<%= confirm %>" method="POST">
+        <label for="cardName">Name:</label><br />
+        <input type="text" id="cardName" name="cardName" value="" /><br />
+        <label for="cardNumber">Card number:</label><br />
+        <input type="number" id="cardNumber" name="cardNumber" value="" /><br />
+        <label for="expMonth">Exp month:</label><br />
+        <input type="number" id="expMonth" name="expMonth" maxlength="2" size="2" /><br />
+        <label for="expYear">Exp Year:</label><br />
+        <input type="number" id="expYear" name="expYear" maxlength="4" size="4" /><br />
+        <label for="cvv">CVV:</label><br />
+        <input type="number" id="cvv" name="cvv" maxlength="3" size="3" /><br />
+        <input type="submit" value="Pay" />
+        <a href="<%= cancel %>">cancel</a>
+      </form>
+    </div>
+  </body>
+</html>
