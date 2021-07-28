@@ -8,16 +8,17 @@ const Address = require('./Address');
 class Commande extends Model {}
 
 Commande.init(
-	{
-        priceTotal: DataTypes.INTEGER,
-        factorisation: DataTypes.STRING,
-        quote: DataTypes.STRING,
-		status: DataTypes.STRING
-	},
-	{
-		sequelize: connection,
+  {
+    priceTotal: DataTypes.INTEGER,
+    factorisation: DataTypes.STRING,
+    quote: DataTypes.STRING,
+    transactionId: DataTypes.STRING,
+    status: DataTypes.STRING,
+  },
+  {
+    sequelize: connection,
 		modelName: 'Commande'
-	}
+  }
 );
 
 

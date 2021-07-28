@@ -21,8 +21,9 @@ exports.createUserTransaction = async (req, res) => {
       status: 'created',
     });
 
+    const generatedUrl = `/secureGeneratedUrl/${transaction.id}`;
     return res.status(HTTP.OK).json({
-      data: { transaction },
+      data: { transaction, generatedUrl },
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });

@@ -8,8 +8,8 @@ POST {{baseUrl}}/admin
 Content-Type: {{contentType}}
 
 {
-    "email":"admin@admin.admin",
-    "password":"admin"
+    "email":"admin2@admin.admin",
+    "password":"password"
 }
 
 ###
@@ -17,14 +17,14 @@ POST {{baseUrl}}/merchants
 Content-Type: {{contentType}}
 
 {
-    "email":"tttttt@tttttt.tttttt",
-    "password":"tttttt",
-    "companyName":"tttttt",
-    "kbis":"tttttt",
-    "tel":"tttttt",
-    "site":"tttttt",
-    "urlConfirmation":"urlZaraConfirmation",
-    "urlAnnulation":"urlZaraAnnulation",
+    "email":"khaled.abdulhalim.pro@gmail.com",
+    "password":"password",
+    "companyName":"khaled.abdulhalim.pro",
+    "kbis":"kbis12345",
+    "tel":"tel",
+    "site":"site",
+    "urlConfirmation":"urlConfirmation",
+    "urlAnnulation":"urlAnnulation",
     "quote":"euro"
 }
 
@@ -40,8 +40,8 @@ POST {{baseUrl}}/login
 Content-Type: {{contentType}}
 
 {
-    "email":"tttttt@tttttt.tttttt",
-    "password":"tttttt"
+    "email":"khaled.abdulhalim.pro@gmail.com",
+    "password":"password"
 }
 
 ### Les Marchands
@@ -49,16 +49,16 @@ GET {{baseUrl}}/merchants
 Authorization: {{authToken}}
 
 ###
-GET {{baseUrl}}/merchants/26
+GET {{baseUrl}}/merchants/2
 Authorization: {{authToken}}
 
 ###
-PUT {{baseUrl}}/merchants/26/validate
+PUT {{baseUrl}}/merchants/4/validate
 Content-Type: {{contentType}}
 Authorization: {{authToken}}
 
 ###
-DELETE {{baseUrl}}/merchants/40/credentials
+DELETE {{baseUrl}}/merchants/2/credentials
 Content-Type: {{contentType}}
 Authorization: {{authToken}}
 
@@ -73,7 +73,7 @@ Authorization: {{authToken}}
     "priceTotal": "100",
     "quote": "Euro",
     "delivery": "adresse",
-    "mid":"40",
+    "mid":"2",
     "commandId": "1234",
     "clientInformation": "aaa aa aaaaa aa aaaaaa",
     "date": "date",
@@ -81,16 +81,16 @@ Authorization: {{authToken}}
 }
 
 ###
-GET {{baseUrl}}/transactions?mid=40
+GET {{baseUrl}}/transactions?mid=2
 Authorization: {{authToken}}
 
 ###
-GET {{baseUrl}}/transactions/1?mid=40
+GET {{baseUrl}}/transactions/1?mid=2
 Authorization: {{authToken}}
 
 
 ###
-PUT {{baseUrl}}/transactions/1?mid=40
+PUT {{baseUrl}}/transactions/1?mid=2
 Content-Type: {{contentType}}
 Authorization: {{authToken}}
 
@@ -99,7 +99,7 @@ Authorization: {{authToken}}
 }
 
 ###
-POST  {{baseUrl}}/operations?mid=40
+POST  {{baseUrl}}/operations?mid=2
 Content-Type: {{contentType}}
 Authorization: {{authToken}}
 
@@ -109,15 +109,15 @@ Authorization: {{authToken}}
 }
 
 ###
-GET  {{baseUrl}}/operations?mid=40&tid=1
+GET  {{baseUrl}}/operations?mid=2&tid=1
 Authorization: {{authToken}}
 
 ###
-GET  {{baseUrl}}/operations/1?mid=40
+GET  {{baseUrl}}/operations/1?mid=2
 Authorization: {{authToken}}
 
 ###
-PUT  {{baseUrl}}/operations/1?mid=40
+PUT  {{baseUrl}}/operations/1?mid=2
 Content-Type: {{contentType}}
 Authorization: {{authToken}}
 

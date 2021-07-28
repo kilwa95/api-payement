@@ -40,9 +40,9 @@ POST  {{baseUrl}}/products
 Content-Type: {{contentType}}
 
 {
-    "titre": "p2",
-    "price": "2",
-    "image": "p2"
+    "titre": "p6",
+    "price": "6",
+    "image": "p6"
 }
 
 
@@ -55,20 +55,23 @@ POST  {{baseUrl}}/commandes
 Content-Type: {{contentType}}
 
 {
-    "products": [{"id":1},{"id":2}],
+    "products": [{"id":4},{"id":5}],
     "priceTotal": 100,
     "factorisation": "factorisation",
     "quote": "euro",
-    "userId":"4",
+    "userId":"1",
     "status": "new"
 }
 
 ###
 GET  {{baseUrl}}/commandes
 
+###
+GET  {{baseUrl}}/commandes/5
+
 
 ###
-PUT  {{baseUrl}}/commandes/1/
+PUT  {{baseUrl}}/commandes/5/
 Content-Type: {{contentType}}
 
 {
