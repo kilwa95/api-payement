@@ -10,7 +10,7 @@ const {
   validatePaymentPage,
   cancelPaymentPage,
 } = require('./controller/securityController');
-const { createOperation, getOperations, getOperation, updateOperation } = require('./controller/operationsController');
+const { createOperation, validateOperation, getOperations, getOperation, updateOperation } = require('./controller/operationsController');
 const { createUserTransaction, getListeTransactions, getTransactionInformations, updateTransaction } = require('./controller/transactionsController');
 const {
   createMerchant,
@@ -48,6 +48,7 @@ router.post('/operations', authorisationJWT, isAuthorised, createOperation);
 router.get('/operations', authorisationJWT, isAuthorised, getOperations); // "?mid=mid"
 router.get('/operations/:oid(\\d+)', authorisationJWT, isAuthorised, getOperation); // "?mid=mid"
 router.put('/operations/:oid(\\d+)', updateOperation);
+router.get('/operations/:oid(\\d+)/validate', validateOperation);
 
 router.get('/paymenturl/:tid(\\d+)', getPaymentPage);
 router.post('/paymenturl/:tid(\\d+)/confirm', validatePaymentPage);

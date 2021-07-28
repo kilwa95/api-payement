@@ -1,4 +1,6 @@
 module.exports = {
+  urlMarchand: 'http://172.24.0.2:4000',
+  urlPsp: 'http://172.24.0.2:4000',
   nodemailer: {
     host: 'smtp.mailtrap.io',
     port: 2525,

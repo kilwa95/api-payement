@@ -1,5 +1,5 @@
 {
-  "name": "plateforme_api",
+  "name": "psp",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -11,7 +11,6 @@
   "author": "ESGI",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",

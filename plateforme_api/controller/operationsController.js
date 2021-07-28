@@ -1,6 +1,8 @@
 /* eslint-disable object-curly-newline */
 const { HTTP, isEmpty } = require('../Helper');
 const { createOperation, findAllOperationsByTid, findOneOperation, updateOperation } = require('../queries/operationsQuery');
+const { findOneTransaction, updateTransaction } = require('../queries/transactionQuery');
+const { sendToMarchand } = require('../services/AxiosApi');
 
 exports.createOperation = async (req, res) => {
   try {
@@ -69,6 +71,28 @@ exports.updateOperation = async (req, res) => {
     const keys = { status };
     await updateOperation(keys, oid);
     const operation = await findOneOperation(oid);
+
+    return res.status(HTTP.OK).json({
+      data: { operation },
+    });
+  } catch (error) {
+    return res.status(HTTP.SERVER_ERROR).json({ error });
+  }
+};
+exports.validateOperation = async (req, res) => {
+  try {
+    const { oid } = req.params;
+
+    if (isEmpty([oid])) {
+      return res.status(HTTP.BAD_REQUEST).json({ error: 'BAD_REQUEST' });
+    }
+    await updateOperation({ status: 'ok' }, oid);
+    const operation = await findOneOperation(oid);
+
+    const transaction = await findOneTransaction(operation.transactionId);
+    await updateTransaction({ status: 'ok' }, transaction.id);
+
+    await sendToMarchand(transaction.commandId, 'ok');
 
     return res.status(HTTP.OK).json({
       data: { operation },
