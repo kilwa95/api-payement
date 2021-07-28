@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const MemoryStore = require('memorystore')(session);
 const cors = require('cors');
 const express = require('express');
+const path = require('path');
 const routes = require('./routes');
 
 const app = express();
@@ -12,6 +13,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // for “Content-Type: application/x-www-form-urlencoded”,
 app.use(cookieParser());
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 app.use(
   session({
     secret: 'plateforme_secret',

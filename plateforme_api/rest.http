@@ -128,5 +128,8 @@ Authorization: {{authToken}}
 
 
 ###
-GET  {{baseUrl}}/ping
+GET  {{baseUrl}}/paymenturl/1
 Content-Type: {{contentType}}
+
+
+### 

@@ -128,6 +128,22 @@ function generateClientTokens() {
   return tokens;
 }
 
+async function validatePaymentPage(req, res) {
+  try {
+    return res.status(HTTP.UNAUTHORIZED).json({ error: 'UNAUTHORIZED' });
+  } catch (error) {
+    return res.status(HTTP.SERVER_ERROR).json({ error });
+  }
+}
+
+async function getPaymentPage(req, res) {
+  try {
+    return res.render('payment');
+  } catch (error) {
+    return res.status(HTTP.SERVER_ERROR).json({ error });
+  }
+}
+
 module.exports = {
   authorisationJWT,
   login,
@@ -135,4 +151,6 @@ module.exports = {
   isAuthorised,
   onlyAdmin,
   generateClientTokens,
+  getPaymentPage,
+  validatePaymentPage,
 };

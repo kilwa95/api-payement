@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 const express = require('express');
-const { authorisationJWT, login, logout, isAuthorised, onlyAdmin } = require('./controller/securityController');
+const { authorisationJWT, login, logout, isAuthorised, onlyAdmin, getPaymentPage, validatePaymentPage } = require('./controller/securityController');
 const { createOperation, getOperations, getOperation, updateOperation } = require('./controller/operationsController');
 const { createUserTransaction, getListeTransactions, getTransactionInformations, updateTransaction } = require('./controller/transactionsController');
 const {
@@ -39,5 +39,8 @@ router.post('/operations', authorisationJWT, isAuthorised, createOperation);
 router.get('/operations', authorisationJWT, isAuthorised, getOperations); // "?mid=mid"
 router.get('/operations/:oid(\\d+)', authorisationJWT, isAuthorised, getOperation); // "?mid=mid"
 router.put('/operations/:oid(\\d+)', updateOperation);
+
+router.get('/paymenturl/:tid(\\d+)', getPaymentPage);
+router.post('/paymenturl/:tid(\\d+)', validatePaymentPage);
 
 module.exports = router;
