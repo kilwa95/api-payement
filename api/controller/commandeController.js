@@ -10,7 +10,7 @@ exports.SaveCommande = async (req, res, next) => {
 
     const { generatedUrl, transaction } = await createTransaction(commandeID);
 
-    res.status(200).json({
+    res.status(201).json({
       action: req.url,
       method: req.method,
       data: commande_product,

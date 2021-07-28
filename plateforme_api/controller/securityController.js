@@ -2,7 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const oidcTokenHash = require('oidc-token-hash');
 const { HTTP, isEmpty } = require('../Helper');
-const { findUserByEmail } = require('../queries/usersQuery');
+const { findUserByEmail, findUserById } = require('../queries/usersQuery');
+const { findOneTransaction } = require('../queries/transactionQuery');
 
 const { SECRET_KEY } = process.env;
 const TOKEN_EXPIRE_IN = 24 * 60 * 60;
@@ -130,7 +131,26 @@ function generateClientTokens() {
 
 async function validatePaymentPage(req, res) {
   try {
-    return res.status(HTTP.UNAUTHORIZED).json({ error: 'UNAUTHORIZED' });
+    const { tid } = req.params;
+    const { cardName, cardNumber, expMonth, expYear, cvv } = req.body;
+
+    const transaction = await findOneTransaction(tid);
+    const user = await findUserById(transaction.userId);
+    const { urlConfirmation } = user;
+    return res.redirect(`http://localhost:3000/${urlConfirmation}?tid=${tid}`);
+  } catch (error) {
+    return res.status(HTTP.SERVER_ERROR).json({ error });
+  }
+}
+
+async function cancelPaymentPage(req, res) {
+  try {
+    const { tid } = req.params;
+
+    const transaction = await findOneTransaction(tid);
+    const user = await findUserById(transaction.userId);
+    const { urlAnnulation } = user;
+    return res.redirect(`http://localhost:3000/${urlAnnulation}?tid=${tid}`);
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
   }
@@ -138,7 +158,8 @@ async function validatePaymentPage(req, res) {
 
 async function getPaymentPage(req, res) {
   try {
-    return res.render('payment');
+    const { tid } = req.params;
+    return res.render('payment', { confirm: `/paymenturl/${tid}/confirm`, cancel: `/paymenturl/${tid}/cancel` });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
   }
@@ -153,4 +174,5 @@ module.exports = {
   generateClientTokens,
   getPaymentPage,
   validatePaymentPage,
+  cancelPaymentPage,
 };

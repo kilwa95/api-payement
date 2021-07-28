@@ -8,7 +8,7 @@ POST {{baseUrl}}/admin
 Content-Type: {{contentType}}
 
 {
-    "email":"admin2@admin.admin",
+    "email":"admin@admin.admin",
     "password":"password"
 }
 
@@ -133,3 +133,5 @@ Content-Type: {{contentType}}
 
 
 ### 
+
+

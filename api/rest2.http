@@ -7,6 +7,24 @@ POST  {{baseUrl}}/users
 Content-Type: {{contentType}}
 
 {
+    "firstName":"khaled",
+    "lastName":"abdulhalim",
+    "phone":111,
+    "email":"khaled.abdulhalim.pro@gmail.com",
+    "password":"password",
+    "roles": ["admin"],
+    "address": {
+        "street":"street",
+        "city":"city",
+        "postalCode":75015
+    }
+}
+
+###
+POST  {{baseUrl}}/users
+Content-Type: {{contentType}}
+
+{
     "firstName":"user",
     "lastName":"user",
     "phone":111,
