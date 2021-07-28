@@ -30,6 +30,15 @@ const transactionHttp = {
 		});
 		return transactions;
 	},
+	getOperationTransactions: async function(tid,mid) {
+		
+		const transactions = await axios.get(`http://localhost:4000/operations/?mid=${mid}&tid=${tid}`, {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('token')}`
+			}
+		});
+		return transactions;
+	},
 };
 
 export default transactionHttp;

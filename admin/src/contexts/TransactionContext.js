@@ -17,6 +17,7 @@ import {
   export default function TransactionProvider({ children }) {
     const [ transactions, setTransactions ] = useState([]);
     const [ transactionsMerchant, setTransactionsMerchant ] = useState([]);
+    const [ operations, setOperations ] = useState([]);
     const { user } = useUser()
     
 
@@ -28,11 +29,17 @@ import {
       { key: 'quote' },
       { key: 'status' },
       { key: 'delivery' },
+      // {
+      //   key: 'opertations',
+      //   sorter: false,
+      //   filter: false
+      // },
       {
-        key: 'opertations',
+        key: 'show_details',
+        label: 'operations',
         sorter: false,
         filter: false
-      },
+      }
     ];
 
 
@@ -61,12 +68,20 @@ import {
 	}, []);
 
 
+  const getOperation = useCallback( async(tid,mid) => {
+    const operations = await transactionHttp.getOperationTransactions(tid,mid)
+    setOperations(operations.data.data.operations)
+  },[operations])
+
+
     return (
         <TransactionContext.Provider
           value={{
             transactions,
             transactionsMerchant,
-            fields
+            fields,
+            getOperation,
+            operations
           }} 
         >
           {children}
