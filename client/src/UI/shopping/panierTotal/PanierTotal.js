@@ -15,9 +15,10 @@ const PanierTotal = () => {
 		const data = {
 			products: panier,
 			priceTotal:totalPrice,
+			factorisation: "factorisation",
+			quote: "euro",
 			userId: user.id,
-			deliveryId: user.addressId,
-			status: "created",
+			status: "new"
 			
 		}
 		orderedHttp.saveOrdered(data)
