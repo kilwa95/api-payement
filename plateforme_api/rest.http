@@ -2,45 +2,58 @@
 @contentType = application/json
 @authToken = {{login.response.headers.Authorization}}
 
-POST {{baseUrl}}/merchants HTTP/1.1
+### 
+# @name createAdmin
+POST {{baseUrl}}/admin
 Content-Type: {{contentType}}
 
 {
-    "email":"admin@gmail.com",
-    "password":"admin",
-    "companyName":"amazon",
-    "kbis":"amazon",
-    "tel":"06577677",
-    "site":"www.amazon,.com",
-    "urlConfirmation":"urlConfirmation",
-    "urlAnnulation":"urlAnnulation",
-    "quote":"quote"
+    "email":"admin@admin.admin",
+    "password":"admin"
 }
 
+###
+POST {{baseUrl}}/merchants
+Content-Type: {{contentType}}
+
+{
+    "email":"tttttt@tttttt.tttttt",
+    "password":"tttttt",
+    "companyName":"tttttt",
+    "kbis":"tttttt",
+    "tel":"tttttt",
+    "site":"tttttt",
+    "urlConfirmation":"urlZaraConfirmation",
+    "urlAnnulation":"urlZaraAnnulation",
+    "quote":"euro"
+}
+
+
+
 ### Authentification
-POST {{baseUrl}}/logout HTTP/1.1
+POST {{baseUrl}}/logout
 Authorization: {{authToken}}
 
 ###
 # @name login
-POST {{baseUrl}}/login HTTP/1.1
+POST {{baseUrl}}/login
 Content-Type: {{contentType}}
 
 {
-    "email":"admin@gmail.com",
-    "password":"admin"
+    "email":"tttttt@tttttt.tttttt",
+    "password":"tttttt"
 }
 
 ### Les Marchands
-GET {{baseUrl}}/merchants HTTP/1.1
+GET {{baseUrl}}/merchants
 Authorization: {{authToken}}
 
 ###
-GET {{baseUrl}}/merchants/2
+GET {{baseUrl}}/merchants/26
 Authorization: {{authToken}}
 
 ###
-PUT {{baseUrl}}/merchants/40/validate
+PUT {{baseUrl}}/merchants/26/validate
 Content-Type: {{contentType}}
 Authorization: {{authToken}}
 
@@ -68,7 +81,7 @@ Authorization: {{authToken}}
 }
 
 ###
-GET {{baseUrl}}/transactions?mid=2
+GET {{baseUrl}}/transactions?mid=40
 Authorization: {{authToken}}
 
 ###
@@ -86,17 +99,17 @@ Authorization: {{authToken}}
 }
 
 ###
-POST  {{baseUrl}}/operations?mid=7
+POST  {{baseUrl}}/operations?mid=40
 Content-Type: {{contentType}}
 Authorization: {{authToken}}
 
 {
     "type":"buy", 
-    "tid":"7"
+    "tid":"1"
 }
 
 ###
-GET  {{baseUrl}}/operations?mid=40&tid=7
+GET  {{baseUrl}}/operations?mid=40&tid=1
 Authorization: {{authToken}}
 
 ###
@@ -111,3 +124,9 @@ Authorization: {{authToken}}
 {
     "status": "new"
 }
+
+
+
+###
+GET  {{baseUrl}}/ping
+Content-Type: {{contentType}}

@@ -5,6 +5,7 @@ const { createOperation, getOperations, getOperation, updateOperation } = requir
 const { createUserTransaction, getListeTransactions, getTransactionInformations, updateTransaction } = require('./controller/transactionsController');
 const {
   createMerchant,
+  createAdmin,
   getListMerchants,
   getMarchandInformations,
   valideteAccountMarchand,
@@ -13,6 +14,8 @@ const {
 
 const router = express.Router();
 router.use(express.json());
+
+router.post('/admin', createAdmin);
 
 // Authentification
 router.post('/login', login);

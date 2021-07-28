@@ -27,17 +27,16 @@ exports.saveCommandeProduct = async (ids,CommandeId) => {
    }
 };
 
-exports.updateCompanyStatus = async (id,status) => {
-	try {
-		const commande  = await Commande.update(status, {
-			where: { id: id }
-		});
-		console.log(id,status)
-		return commande ;
-	   
-   } catch (error) {
-	   console.error(error);
-   }
+exports.updateCommandeStatus = async (id, status) => {
+  try {
+    const commande = await Commande.update(status, {
+      where: { id: id },
+    });
+    console.log(id, status);
+    return commande;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 exports.findAllcommandes = async (body) => {

@@ -1,0 +1,82 @@
+@baseUrl = http://localhost:3003
+@contentType = application/json
+@authToken = {{login.response.headers.Authorization}}
+
+###
+POST  {{baseUrl}}/users
+Content-Type: {{contentType}}
+
+{
+    "firstName":"fff",
+    "lastName":"fff",
+    "phone":111,
+    "email":"fff@fff.fff",
+    "password":"fff",
+    "roles": ["user"],
+    "address": {
+        "street":"street",
+        "city":"city",
+        "postalCode":75015
+    }
+}
+
+###
+###
+GET {{baseUrl}}/users
+
+###
+# @name login
+POST {{baseUrl}}/login
+Content-Type: {{contentType}}
+
+{
+    "email":"admin@admin.admin",
+    "password":"admin"
+}
+###
+
+###
+POST  {{baseUrl}}/products
+Content-Type: {{contentType}}
+
+{
+    "titre": "p2",
+    "price": "2",
+    "image": "p2"
+}
+
+
+###
+GET  {{baseUrl}}/products
+
+
+###
+POST  {{baseUrl}}/commandes
+Content-Type: {{contentType}}
+
+{
+    "products": [{"id":1},{"id":2}],
+    "priceTotal": 100,
+    "factorisation": "factorisation",
+    "quote": "euro",
+    "userId":"16",
+    "status": "new"
+}
+
+###
+GET  {{baseUrl}}/commandes
+
+
+###
+PUT  {{baseUrl}}/commandes/1/
+Content-Type: {{contentType}}
+
+{
+    "status":"new"
+}
+
+
+
+###
+GET  {{baseUrl}}/test
+Content-Type: {{contentType}}

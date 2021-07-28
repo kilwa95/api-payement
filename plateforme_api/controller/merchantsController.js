@@ -4,6 +4,7 @@ const { HTTP, isEmpty } = require('../Helper');
 const { createUser } = require('../queries/usersQuery');
 const { findAllMerchants, findMerchantById, updateMerchant } = require('../queries/usersQuery');
 const { generateClientTokens } = require('./securityController');
+const emailService = require('../services/email');
 
 exports.createMerchant = async (req, res) => {
   try {
@@ -25,6 +26,44 @@ exports.createMerchant = async (req, res) => {
       quote,
       valid: false,
       role: 'merchant',
+      clientToken: '',
+      clientSecret: '',
+    };
+
+    const user = await createUser(newUser);
+    const infos = emailService.send({
+      to: email,
+      subject: 'inscription au platforme de payemet',
+      text: 'votre compte est en attdant de validation par notre admin',
+    });
+
+    return res.status(HTTP.CREATED).json({
+      data: { user, infos },
+    });
+  } catch (error) {
+    return res.status(HTTP.SERVER_ERROR).json({ error });
+  }
+};
+exports.createAdmin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (isEmpty([email, password])) {
+      return res.status(HTTP.BAD_REQUEST).json({ error: 'BAD_REQUEST' });
+    }
+
+    const newUser = {
+      email,
+      password,
+      companyName: email,
+      kbis: email,
+      tel: 'admin',
+      site: 'admin',
+      urlConfirmation: 'admin',
+      urlAnnulation: 'admin',
+      quote: '',
+      valid: true,
+      role: 'admin',
       clientToken: '',
       clientSecret: '',
     };
@@ -67,7 +106,7 @@ exports.valideteAccountMarchand = async (req, res) => {
   try {
     const { mid } = req.params;
     const { clientToken, clientSecret } = generateClientTokens();
-    const keys = { clientToken, clientSecret, valid: req.body.valid };
+    const keys = { clientToken, clientSecret, valid: true };
     await updateMerchant(keys, mid);
     const merchant = await findMerchantById(mid);
     merchant.password = undefined;

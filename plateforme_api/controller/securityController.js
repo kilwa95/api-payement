@@ -80,7 +80,6 @@ async function login(req, res) {
 
     const decoded = { id: user.id, role: user.role, isAdmin: user.role === 'admin' };
     const token = generateToken(decoded);
-    console.log(token)
 
     res.header('Authorization', `Bearer ${token}`);
 

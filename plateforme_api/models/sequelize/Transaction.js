@@ -20,8 +20,8 @@ Transaction.init(
   }
 );
 
-// Transaction.belongsTo(User, { as: 'user' });
-// User.hasMany(Transaction, { foreignKey: 'userId', as: 'transactions' });
+Transaction.belongsTo(User, { as: 'user' });
+User.hasMany(Transaction, { foreignKey: 'userId', as: 'transactions' });
 
 Transaction.sync({
   alter: true,

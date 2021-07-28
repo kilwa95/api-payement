@@ -32,7 +32,11 @@ exports.findUserByEmail = async email => {
 
 exports.findAllMerchants = async (req, res) => {
   try {
-    const users = await User.findAll({});
+    const users = await User.findAll({
+      where: {
+        role: 'merchant',
+      },
+    });
     const merchants = users.map(user => {
       user.password = undefined;
       return user;

@@ -7,8 +7,7 @@ const commandes = require('../routes/commandes');
 const platform = require('../routes/platform');
 const products = require('../routes/products');
 
-
-router.use('/login', auth);
+router.post('/login', auth);
 router.use('/users', users);
 router.use('/merchants', merchants);
 router.use('/products', products);

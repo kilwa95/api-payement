@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const config = require('../config/config');
 
 module.exports = {
-  send(email) {
+   send(email) {
     try {
       const transporter = nodemailer.createTransport({
         host: config.nodemailer.host,
@@ -14,7 +14,7 @@ module.exports = {
       });
       const info = transporter.sendMail({
         from: 'lga.sig.khaled@gmail.com', // sender address
-        to: 'khaled.abdulhalim.pro@gmail.com', // list of receivers
+        to: email.to, // list of receivers
         subject: email.subject, // Subject line
         text: email.text, // plain text body
         html: `<h3><pre>${email.text}</pre></h3>`, // html body
@@ -23,6 +23,7 @@ module.exports = {
       return info;
     } catch (error) {
       console.error(error.message);
+      return error;
     }
   },
 };
