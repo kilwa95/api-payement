@@ -40,8 +40,8 @@ POST {{baseUrl}}/login
 Content-Type: {{contentType}}
 
 {
-    "email":"khaled.abdulhalim.pro@gmail.com",
-    "password":"password"
+    "email":"admin2@admin.admin",
+    "password":"admin"
 }
 
 ### Les Marchands

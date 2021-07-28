@@ -84,8 +84,9 @@ async function login(req, res) {
     res.header('Authorization', `Bearer ${token}`);
 
     user.password = undefined;
+
     return res.status(HTTP.OK).json({
-      data: { user },
+      data: { user, token},
     });
   } catch (error) {
     return res.status(HTTP.SERVER_ERROR).json({ error });
